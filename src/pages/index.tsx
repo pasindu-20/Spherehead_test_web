@@ -1,5 +1,4 @@
 import Head from "next/head";
-import PageShell from "@/components/layout/page-shell";
 import HeroSection from "@/components/landing/hero-section";
 
 export default function HomePage() {
@@ -14,9 +13,7 @@ export default function HomePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <PageShell>
-        <HeroSection />
-      </PageShell>
+      <HeroSection />
     </>
   );
 }

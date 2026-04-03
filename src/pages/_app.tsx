@@ -1,17 +1,20 @@
 import type { AppProps } from "next/app";
-import { Inter } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "@/styles/globals.css";
+import SiteBackground from "@/components/layout/site-background";
 
-const inter = Inter({
+const archivo = Archivo({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-sans",
+  variable: "--font-archivo",
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={inter.variable}>
-      <Component {...pageProps} />
+    <main className={archivo.variable}>
+      <SiteBackground>
+        <Component {...pageProps} />
+      </SiteBackground>
     </main>
   );
 }
