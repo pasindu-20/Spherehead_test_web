@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { Archivo } from "next/font/google";
+import { Archivo, Inter_Tight } from "next/font/google";
 import "@/styles/globals.css";
 import SiteBackground from "@/components/layout/site-background";
 
@@ -9,9 +9,15 @@ const archivo = Archivo({
   variable: "--font-archivo",
 });
 
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter-tight",
+});
+
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={archivo.variable}>
+    <main className={`${archivo.variable} ${interTight.variable}`}>
       <SiteBackground>
         <Component {...pageProps} />
       </SiteBackground>
