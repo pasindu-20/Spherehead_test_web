@@ -1,4 +1,5 @@
 "use client";
+
 import { ChevronsDown } from "lucide-react";
 import { motion } from "motion/react";
 import SiteContainer from "@/components/layout/site-container";
@@ -39,13 +40,15 @@ export default function HeroSection() {
         </motion.div>
       </SiteContainer>
 
-      <div className="absolute bottom-0 left-0 right-0 z-0">
+      <div className="absolute bottom-0 left-0 right-0 z-20">
         <SiteContainer>
-          <div className="h-16 bg-white rounded-t-[4px] flex items-center justify-center gap-2">
-            <span className="text-[12px] font-bold tracking-[0.12em] text-[#0D54CA] uppercase">
-              Scroll to Discover
-            </span>
-            <ChevronsDown className="h-5 w-5 text-[#0D54CA]" strokeWidth={2.5} />
+          <div className="flex h-[88px] items-start justify-center rounded-t-[4px] bg-[#f2f2f2] pt-8">
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-[12px] font-bold tracking-[0.12em] text-[#0D54CA] uppercase">
+                Scroll to Discover
+              </span>
+              <ChevronsDown className="h-5 w-5 text-[#0D54CA]" strokeWidth={2.5} />
+            </div>
           </div>
         </SiteContainer>
       </div>
