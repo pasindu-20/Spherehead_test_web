@@ -77,6 +77,22 @@ select {
   line-height: 42px;
   letter-spacing: 2px;
 }
+
+.inter-tight {
+  font-family: var(--font-inter-tight), Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: regular;
+  line-height: 18px;
+  letter-spacing: 1.2px;
+}
+
+.body-medium {
+  font-family: var(--font-inter-tight), Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 42px;
+  letter-spacing: 2%;
+}
 /* end of the typography */
 
 /* GLOBAL WEBSITE BACKGROUND */
@@ -198,3 +214,29 @@ select {
     transform: rotate(-360deg);
   }
 }
+
+/*about us stat cards*/
+
+.about-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-stat-number {
+  font-family: var(--font-archivo), Arial, Helvetica, sans-serif;
+  font-size: 62px;
+  font-weight: 400;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.about-stat-label {
+  font-family: var(--font-archivo), Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: #e8e8e8;
+}
+
