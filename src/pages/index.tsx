@@ -13,6 +13,7 @@ import SiteContainer from "@/components/layout/site-container";
 import ConsultationCTA from "@/components/ui/consultation-cta";
 import BlueLargeRightArrow from "@/components/ui/blue-large-right-arrow";
 import AboutUsButton from "@/components/ui/about-us-button";
+import ServiceWhitecardContent from "@/components/landing/service-whitecard-content";
 
 export default function HomePage() {
   const { scrollY } = useScroll();
@@ -49,12 +50,13 @@ export default function HomePage() {
     };
   }, []);
 
+  const currentViewportHeight = viewportHeight || 900;
   const animationEnd = 100;
 
   const rawBarHeight = useTransform(
     scrollY,
     [0, animationEnd],
-    [88, viewportHeight || 900]
+    [88, currentViewportHeight]
   );
 
   const rawBarWidth = useTransform(
@@ -96,6 +98,26 @@ export default function HomePage() {
     scrollY,
     [10, 28, 52],
     [0, 0.35, 1]
+  );
+
+  // ABOUT -> SERVICES swap
+  // 1st screen = hero
+  // 2nd screen = about
+  // 3rd screen = services
+  // so swap must happen from 1vh -> 2vh, not 2vh -> 3vh
+  const swapStart = currentViewportHeight;
+  const swapEnd = currentViewportHeight * 2;
+
+  const cardY = useTransform(
+    scrollY,
+    [swapStart, swapEnd],
+    [0, -currentViewportHeight]
+  );
+
+  const rawServicesY = useTransform(
+    scrollY,
+    [swapStart, swapEnd],
+    [currentViewportHeight, 0]
   );
 
   const springConfig = {
@@ -150,6 +172,12 @@ export default function HomePage() {
     mass: 0.8,
   });
 
+  const servicesY = useSpring(rawServicesY, {
+    stiffness: 95,
+    damping: 22,
+    mass: 0.85,
+  });
+
   const rightPanelHeight = useMotionTemplate`calc(${cutHeight} + 2px)`;
   const leftPanelWidth = useMotionTemplate`calc(100% - ${rightPanelWidth})`;
 
@@ -168,8 +196,25 @@ export default function HomePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="relative h-[200vh] overflow-x-hidden">
-        {/* HERO SECTION - FIXED BEHIND THE CARD */}
+      <div className="relative overflow-x-hidden">
+        {/* 1st screen */}
+        <div aria-hidden="true" className="h-screen" />
+
+        {/* 2nd screen */}
+        <section
+          id="about"
+          aria-label="About us section"
+          className="relative h-screen"
+        />
+
+        {/* 3rd screen placeholder */}
+        <section
+          id="services"
+          aria-label="Services section"
+          className="relative h-screen"
+        />
+
+        {/* HERO */}
         <section className="fixed inset-0 z-0 overflow-visible">
           <motion.div style={{ opacity: heroContentOpacity }} className="h-full">
             <SiteContainer className="relative grid min-h-screen grid-cols-1 gap-10 pt-16 pb-12 -translate-y-6 lg:grid-cols-[minmax(0,820px)_1fr] lg:items-center lg:pt-20 lg:pb-16 lg:-translate-y-10">
@@ -216,9 +261,47 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* SAME HERO BOTTOM WHITE CARD */}
+
+        {/* SERVICES LAYER */}
+        <motion.div
+          style={{ y: servicesY }}
+          className="fixed inset-0 z-10 pointer-events-none"
+        >
+          <div
+            className="absolute inset-x-0 top-[42vh] rounded-t-[12px] bg-[#f2f2f2]"
+            style={{ height: "140vh" }}
+          />
+
+          <SiteContainer className="relative z-[2] h-full">
+            <div className="flex h-full flex-col justify-start px-6 pt-28 pb-14 lg:px-10 lg:pt-20">
+              <div className="mb-10 flex flex-col gap-5 lg:mb-14 lg:flex-row lg:items-end lg:justify-between ">
+                <div>
+                  <div className="mb-5 flex items-center gap-4">
+                    <BlueLargeRightArrow
+                      size="h-[40px] w-[40px]"
+                      iconSize="h-6 w-6"
+                    />
+
+                    <p className="inter-tight text-white">Services</p>
+                  </div>
+
+                  <h2 className=" heading-2 ">
+                    Transforming Ideas into Powerful Digital <br />
+                    Services that Accelerate Success
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </SiteContainer>
+         
+          <ServiceWhitecardContent />
+          
+        </motion.div>
+
+        {/* ABOUT CARD */}
         <motion.div
           style={{
+            y: cardY,
             height: barHeight,
             width: barWidth,
             borderTopLeftRadius: 4,
@@ -226,7 +309,6 @@ export default function HomePage() {
           }}
           className="fixed bottom-0 left-1/2 z-20 -translate-x-1/2 overflow-hidden"
         >
-          {/* top white section */}
           <motion.div
             style={{
               bottom: cutHeight,
@@ -236,7 +318,6 @@ export default function HomePage() {
             className="absolute inset-x-0 top-0 bg-[#f2f2f2]"
           />
 
-          {/* bottom-right white section */}
           <motion.div
             style={{
               width: rightPanelWidth,
@@ -259,7 +340,6 @@ export default function HomePage() {
             />
           </motion.div>
 
-          {/* TOP WHITE CONTENT */}
           <motion.div
             style={{
               bottom: cutHeight,
@@ -302,8 +382,6 @@ export default function HomePage() {
             </SiteContainer>
           </motion.div>
 
-          {/* BOTTOM LEFT STATS ON EXISTING BACKGROUND */}
-          {/* BOTTOM LEFT STATS ON EXISTING BACKGROUND */}
           <motion.div
             style={{
               width: leftPanelWidth,
@@ -316,22 +394,30 @@ export default function HomePage() {
               <div className="flex w-full max-w-[912px] items-start justify-start gap-8">
                 <div className="about-stat-item">
                   <span className="about-stat-number">30+</span>
-                  <span className="about-stat-label mt-3">Projects Delivered</span>
+                  <span className="about-stat-label mt-3">
+                    Projects Delivered
+                  </span>
                 </div>
 
                 <div className="about-stat-item">
                   <span className="about-stat-number">98%</span>
-                  <span className="about-stat-label mt-3">Client Satisfaction</span>
+                  <span className="about-stat-label mt-3">
+                    Client Satisfaction
+                  </span>
                 </div>
 
                 <div className="about-stat-item">
                   <span className="about-stat-number">16+</span>
-                  <span className="about-stat-label mt-3">Countries Served</span>
+                  <span className="about-stat-label mt-3">
+                    Countries Served
+                  </span>
                 </div>
 
                 <div className="about-stat-item">
                   <span className="about-stat-number">100+</span>
-                  <span className="about-stat-label mt-3">Project Completion</span>
+                  <span className="about-stat-label mt-3">
+                    Project Completion
+                  </span>
                 </div>
               </div>
             </div>
