@@ -14,11 +14,15 @@ import ConsultationCTA from "@/components/ui/consultation-cta";
 import BlueLargeRightArrow from "@/components/ui/blue-large-right-arrow";
 import AboutUsButton from "@/components/ui/about-us-button";
 import ServiceWhitecardContent from "@/components/landing/service-whitecard-content";
+import IndustryCarouselLanding from "@/components/landing/industryCarouselLanding";
 
 export default function HomePage() {
   const { scrollY } = useScroll();
 
   const measureRef = useRef<HTMLDivElement | null>(null);
+  const isAutoScrollingRef = useRef(false);
+  const autoScrollRafRef = useRef<number | null>(null);
+  const scrollStopTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [containerWidth, setContainerWidth] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(0);
@@ -52,6 +56,94 @@ export default function HomePage() {
 
   const currentViewportHeight = viewportHeight || 900;
   const animationEnd = 100;
+
+  useEffect(() => {
+    if (!viewportHeight) return;
+
+    const serviceTarget = currentViewportHeight * 2;
+    const industryTarget = currentViewportHeight * 3;
+
+    const serviceTriggerStart = currentViewportHeight * 1.18;
+    const industryTriggerStart = currentViewportHeight * 2.58;
+
+    const clearPending = () => {
+      if (scrollStopTimerRef.current) {
+        clearTimeout(scrollStopTimerRef.current);
+        scrollStopTimerRef.current = null;
+      }
+
+      if (autoScrollRafRef.current !== null) {
+        cancelAnimationFrame(autoScrollRafRef.current);
+        autoScrollRafRef.current = null;
+      }
+    };
+
+    const animateRemainingScroll = (target: number) => {
+      if (isAutoScrollingRef.current) return;
+
+      const startY = window.scrollY;
+      const distance = target - startY;
+
+      if (distance <= 0) return;
+
+      isAutoScrollingRef.current = true;
+
+      const duration = 520;
+      const startTime = performance.now();
+
+      const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+      const step = (now: number) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = easeOut(progress);
+        const nextY = startY + distance * eased;
+
+        window.scrollTo(0, nextY);
+
+        if (progress < 1) {
+          autoScrollRafRef.current = requestAnimationFrame(step);
+        } else {
+          window.scrollTo(0, target);
+          autoScrollRafRef.current = null;
+
+          setTimeout(() => {
+            isAutoScrollingRef.current = false;
+          }, 60);
+        }
+      };
+
+      autoScrollRafRef.current = requestAnimationFrame(step);
+    };
+
+    const handleScroll = () => {
+      if (isAutoScrollingRef.current) return;
+
+      if (scrollStopTimerRef.current) {
+        clearTimeout(scrollStopTimerRef.current);
+      }
+
+      scrollStopTimerRef.current = setTimeout(() => {
+        const y = window.scrollY;
+
+        if (y >= serviceTriggerStart && y < serviceTarget - 10) {
+          animateRemainingScroll(serviceTarget);
+          return;
+        }
+
+        if (y >= industryTriggerStart && y < industryTarget - 10) {
+          animateRemainingScroll(industryTarget);
+        }
+      }, 70);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearPending();
+      isAutoScrollingRef.current = false;
+    };
+  }, [currentViewportHeight, viewportHeight]);
 
   const rawBarHeight = useTransform(
     scrollY,
@@ -101,12 +193,9 @@ export default function HomePage() {
   );
 
   // ABOUT -> SERVICES swap
-  // 1st screen = hero
-  // 2nd screen = about
-  // 3rd screen = services
-  // so swap must happen from 1vh -> 2vh, not 2vh -> 3vh
   const swapStart = currentViewportHeight;
   const swapEnd = currentViewportHeight * 2;
+  const servicesHoldEnd = currentViewportHeight * 2.45;
 
   const cardY = useTransform(
     scrollY,
@@ -114,10 +203,13 @@ export default function HomePage() {
     [0, -currentViewportHeight]
   );
 
+  // SERVICES -> INDUSTRIES continuation
+  const industriesEnd = currentViewportHeight * 3;
+
   const rawServicesY = useTransform(
     scrollY,
-    [swapStart, swapEnd],
-    [currentViewportHeight, 0]
+    [swapStart, swapEnd, servicesHoldEnd, industriesEnd],
+    [currentViewportHeight, 0, 0, -currentViewportHeight]
   );
 
   const springConfig = {
@@ -214,6 +306,13 @@ export default function HomePage() {
           className="relative h-screen"
         />
 
+        {/* 4th screen placeholder */}
+        <section
+          id="industries"
+          aria-label="Industries section"
+          className="relative h-screen"
+        />
+
         {/* HERO */}
         <section className="fixed inset-0 z-0 overflow-visible">
           <motion.div style={{ opacity: heroContentOpacity }} className="h-full">
@@ -261,15 +360,14 @@ export default function HomePage() {
           </div>
         </section>
 
-
-        {/* SERVICES LAYER */}
+        {/* SERVICES + INDUSTRIES LAYER */}
         <motion.div
           style={{ y: servicesY }}
           className="fixed inset-0 z-10 pointer-events-none"
         >
           <div
             className="absolute inset-x-0 top-[42vh] rounded-t-[12px] bg-[#f2f2f2]"
-            style={{ height: "140vh" }}
+            style={{ height: "150vh" }}
           />
 
           <SiteContainer className="relative z-[2] h-full">
@@ -293,9 +391,42 @@ export default function HomePage() {
               </div>
             </div>
           </SiteContainer>
-         
+
           <ServiceWhitecardContent />
-          
+
+          <div className="absolute inset-x-0 top-[110vh] z-[4] pointer-events-auto">
+            <SiteContainer>
+              <div className="px-6 lg:px-10">
+                <div className="mb-5 flex items-center gap-5">
+                  <BlueLargeRightArrow
+                    size="h-[40px] w-[40px]"
+                    iconSize="h-6 w-6"
+                  />
+                  <p className="inter-tight text-[#01030B]">Industries</p>
+                </div>
+
+                <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+                  <h2 className="heading-2 !font-600 max-w-[760px] !text-[#01030B]">
+                    Empowering Industries with <br />
+                    Innovative Digital Solutions <br />
+                    for Sustainable Growth
+                  </h2>
+
+                  <p className="inter-tight max-w-[460px] !text-[#01030B] lg:pt-40 letter-spacing-0 line-height-2 ">
+                    Delivering tailored digital solutions across a wide range of
+                    <br />
+                    industries, we help businesses of all kinds innovate,
+                    adapt,
+                    <br />
+                    and grow enabling them to stay competitive and succeed in
+                    <br />
+                    an ever-evolving digital landscape.
+                  </p>
+                </div>
+                <IndustryCarouselLanding />
+              </div>
+            </SiteContainer>
+          </div>
         </motion.div>
 
         {/* ABOUT CARD */}
@@ -365,8 +496,7 @@ export default function HomePage() {
                   <span className="text-[#2666D2]">
                     Spherehead Technologies
                   </span>{" "}
-                  is a{" "}
-                  <span className="text-[#2666D2]">USA established</span>{" "}
+                  is a <span className="text-[#2666D2]">USA established</span>{" "}
                   technology
                   <br />
                   solutions company delivering end-to-end digital services,
