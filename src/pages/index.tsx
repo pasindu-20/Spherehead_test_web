@@ -15,6 +15,8 @@ import BlueLargeRightArrow from "@/components/ui/blue-large-right-arrow";
 import AboutUsButton from "@/components/ui/about-us-button";
 import ServiceWhitecardContent from "@/components/landing/service-whitecard-content";
 import IndustryCarouselLanding from "@/components/landing/industryCarouselLanding";
+import TechnologiesSection from "@/components/technologies-section";
+import TestimonialSection from "@/components/testimonial";
 
 export default function HomePage() {
   const { scrollY } = useScroll();
@@ -62,9 +64,13 @@ export default function HomePage() {
 
     const serviceTarget = currentViewportHeight * 2;
     const industryTarget = currentViewportHeight * 3;
+    const technologiesTarget = currentViewportHeight * 4;
+    const testimonialTarget = currentViewportHeight * 5;
 
     const serviceTriggerStart = currentViewportHeight * 1.18;
     const industryTriggerStart = currentViewportHeight * 2.58;
+    const technologiesTriggerStart = currentViewportHeight * 3.58;
+    const testimonialTriggerStart = currentViewportHeight * 4.58;
 
     const clearPending = () => {
       if (scrollStopTimerRef.current) {
@@ -132,6 +138,16 @@ export default function HomePage() {
 
         if (y >= industryTriggerStart && y < industryTarget - 10) {
           animateRemainingScroll(industryTarget);
+          return;
+        }
+
+        if (y >= technologiesTriggerStart && y < technologiesTarget - 10) {
+          animateRemainingScroll(technologiesTarget);
+          return;
+        }
+
+        if (y >= testimonialTriggerStart && y < testimonialTarget - 10) {
+          animateRemainingScroll(testimonialTarget);
         }
       }, 70);
     };
@@ -203,13 +219,29 @@ export default function HomePage() {
     [0, -currentViewportHeight]
   );
 
-  // SERVICES -> INDUSTRIES continuation
+  // SERVICES -> INDUSTRIES -> TECHNOLOGIES -> TESTIMONIALS continuation
   const industriesEnd = currentViewportHeight * 3;
+  const technologiesEnd = currentViewportHeight * 4;
+  const testimonialEnd = currentViewportHeight * 5;
 
   const rawServicesY = useTransform(
     scrollY,
-    [swapStart, swapEnd, servicesHoldEnd, industriesEnd],
-    [currentViewportHeight, 0, 0, -currentViewportHeight]
+    [
+      swapStart,
+      swapEnd,
+      servicesHoldEnd,
+      industriesEnd,
+      technologiesEnd,
+      testimonialEnd,
+    ],
+    [
+      currentViewportHeight,
+      0,
+      0,
+      -currentViewportHeight,
+      -currentViewportHeight * 2,
+      -currentViewportHeight * 2.62,
+    ]
   );
 
   const springConfig = {
@@ -313,6 +345,20 @@ export default function HomePage() {
           className="relative h-screen"
         />
 
+        {/* 5th screen placeholder */}
+        <section
+          id="technologies"
+          aria-label="Technologies section"
+          className="relative h-screen"
+        />
+
+        {/* 6th screen placeholder */}
+        <section
+          id="testimonials"
+          aria-label="Testimonials section"
+          className="relative h-screen"
+        />
+
         {/* HERO */}
         <section className="fixed inset-0 z-0 overflow-visible">
           <motion.div style={{ opacity: heroContentOpacity }} className="h-full">
@@ -360,13 +406,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* SERVICES + INDUSTRIES LAYER */}
+        {/* SERVICES + INDUSTRIES + TECHNOLOGIES LAYER */}
         <motion.div
           style={{ y: servicesY }}
           className="fixed inset-0 z-10 pointer-events-none"
         >
           <div
-            className="absolute inset-x-0 top-[42vh] rounded-t-[12px] bg-[#f2f2f2]"
+            className="absolute inset-x-0 top-[42vh] rounded-t-[12px] bg-[#ffffff]"
             style={{ height: "150vh" }}
           />
 
@@ -427,6 +473,20 @@ export default function HomePage() {
               </div>
             </SiteContainer>
           </div>
+
+          <div
+            className="absolute inset-x-0 top-[200vh] z-[3] bg-[#ffffff]"
+            style={{ minHeight: "220vh" }}
+          />
+
+          <div className="absolute inset-x-0 top-[230vh] z-[4] pointer-events-auto">
+            <SiteContainer>
+              <div className="min-h-[220vh] px-6 lg:px-10">
+                <TechnologiesSection />
+                <TestimonialSection />
+              </div>
+            </SiteContainer>
+          </div>
         </motion.div>
 
         {/* ABOUT CARD */}
@@ -446,7 +506,7 @@ export default function HomePage() {
               borderTopLeftRadius: barRadius,
               borderTopRightRadius: barRadius,
             }}
-            className="absolute inset-x-0 top-0 bg-[#f2f2f2]"
+            className="absolute inset-x-0 top-0 bg-[#ffffff]"
           />
 
           <motion.div
@@ -455,7 +515,7 @@ export default function HomePage() {
               height: rightPanelHeight,
               clipPath: rightPanelClipPath,
             }}
-            className="absolute bottom-0 right-0 bg-[#f2f2f2]"
+            className="absolute bottom-0 right-0 bg-[#ffffff]"
           />
 
           <motion.div
@@ -562,7 +622,7 @@ export default function HomePage() {
             }}
             className="absolute bottom-0 right-0 z-[4] overflow-hidden"
           >
-            <div className="flex h-full flex-col items-start bg-[#f2f2f2] px-6 pl-6 pt-10 pb-8 sm:px-8 lg:px-14 lg:pl-14">
+            <div className="flex h-full flex-col items-start bg-[#ffffff] px-6 pl-6 pt-10 pb-8 sm:px-8 lg:px-14 lg:pl-14">
               <p className="inter-tight text-[#676767]">
                 Driven by client satisfaction and continuous
                 <br />

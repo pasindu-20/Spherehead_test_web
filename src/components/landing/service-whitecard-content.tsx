@@ -55,7 +55,7 @@ const services = [
 
 export default function ServiceWhitecardContent() {
     return (
-        <div className="absolute inset-x-0 top-[65vh] z-[3] rounded-t-[4px] bg-[#f2f2f2] pt-0 pb-12 pointer-events-auto">
+        <div className="absolute inset-x-0 top-[65vh] z-[3] rounded-t-[4px] bg-[#ffffff] pt-0 pb-12 pointer-events-auto">
             <div className="mx-auto mt-[-110px] grid w-full max-w-[1380px] grid-cols-5 gap-y-10 px-6 md:px-8 lg:px-10 scale-[0.9]">
                 {services.map((service) => (
                     <div
