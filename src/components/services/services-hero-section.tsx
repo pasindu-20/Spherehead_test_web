@@ -4,14 +4,9 @@ import SiteContainer from "@/components/layout/site-container";
 import CyclicButton from "@/components/ui/cyclic-button";
 
 export default function ServicesIntroSection() {
-  return (
-    <section className="relative w-full min-h-[100svh] flex flex-col bg-[#0e2763] overflow-hidden">
-      {/* min-h-[100svh] ensures it fits the screen height perfectly on mobile,
-        ignoring browser UI bars. flex-grow pushes content inside. 
-      */}
+return (
+    <section className="relative w-full h-[100svh] flex flex-col overflow-hidden bg-transparent">
       <SiteContainer className="relative z-10 flex flex-col h-full flex-grow justify-end pb-12 pt-32 lg:pb-20">
-        
-        {/* mt-auto pushes this entire block to the very bottom */}
         <div className="w-full flex flex-col mt-auto">
           
           {/* Animated Horizontal Line */}
@@ -23,8 +18,6 @@ export default function ServicesIntroSection() {
           />
           
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,820px)_1fr] lg:items-end">
-            
-            {/* Left Text Block */}
             <motion.div 
               initial={{ opacity: 0, y: 36 }}
               animate={{ opacity: 1, y: 0 }}
@@ -41,7 +34,6 @@ export default function ServicesIntroSection() {
               </p>
             </motion.div>
 
-            {/* Right Button Block */}
             <motion.div 
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -52,10 +44,8 @@ export default function ServicesIntroSection() {
                 Start a Project
               </CyclicButton>
             </motion.div>
-
           </div>
         </div>
-        
       </SiteContainer>
     </section>
   );
