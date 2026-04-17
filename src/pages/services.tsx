@@ -3,33 +3,30 @@ import useAutoScroll from "@/hooks/useAutoScroll";
 import ServicesHeroSection from "@/components/services/services-hero-section";
 import ServicesIntroSection from "@/components/services/services-intro-section";
 import ServicesApproachSection from "@/components/services/services-approach-section";
+import ServicesListSection from "@/components/services/services-list-section";
 
 export default function ServicesPage() {
-  
-  // This single line triggers all the scrolling logic!
   useAutoScroll();
 
   return (
     <>
       <Head>
         <title>Digital Services | Spherehead Technologies</title>
-        <meta name="description" content="Transforming complex challenges into scalable digital realities." />
       </Head>
 
-      <div className="site-background-root">
-        <div className="site-background-fixed" />
-        <div className="site-background-content flex flex-col pb-20">
+      <div className="site-background-root relative w-full min-h-screen">
+        <div className="site-background-content flex flex-col relative z-0">
           
-          {/* Section 1: Top Blue Hero */}
-          <ServicesHeroSection />
+          {/* CRITICAL FIX 1: Freeze the Hero Section behind the rest of the page! */}
+          <div className="sticky top-0 w-full h-[100vh] -z-10">
+            <ServicesHeroSection />
+          </div>
           
-          {/* Wrapper to ensure no visual gaps between the White Card and Approach Section */}
-          <div className="w-full flex flex-col">
-            {/* Section 2: White Curvy Cards */}
+          {/* The rest of the page now slides UP over the frozen Hero gradient */}
+          <div className="w-full flex flex-col relative z-10">
             <ServicesIntroSection />
-            
-            {/* Section 3: Horizontal Scroll */}
             <ServicesApproachSection />
+            <ServicesListSection />
           </div>
 
         </div>
