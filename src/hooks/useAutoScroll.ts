@@ -2,80 +2,85 @@ import { useEffect, useRef } from "react";
 
 export default function useAutoScroll() {
   const isAutoScrollingRef = useRef(false);
-  const autoScrollRafRef = useRef<number | null>(null);
   const scrollStopTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastScrollYRef = useRef(0);
   const lastRestingYRef = useRef(0);
 
   useEffect(() => {
     lastRestingYRef.current = Math.round(window.scrollY / window.innerHeight) * window.innerHeight;
 
-    const animateScroll = (target: number) => {
+    const animateScroll = (targetY: number) => {
       if (isAutoScrollingRef.current) return;
+      
       const startY = window.scrollY;
-      const distance = target - startY;
+      const distance = targetY - startY;
 
       if (Math.abs(distance) < 5) {
-        lastRestingYRef.current = target;
+        lastRestingYRef.current = targetY;
         return;
       }
 
       isAutoScrollingRef.current = true;
-      const duration = 450; 
+      const duration = 400; 
       const startTime = performance.now();
-      const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+      const easeOut = (t: number) => 1 - Math.pow(1 - t, 4);
 
       const step = (now: number) => {
         const progress = Math.min((now - startTime) / duration, 1);
         window.scrollTo(0, startY + distance * easeOut(progress));
 
         if (progress < 1) {
-          autoScrollRafRef.current = requestAnimationFrame(step);
+          requestAnimationFrame(step);
         } else {
-          window.scrollTo(0, target);
-          lastRestingYRef.current = target;
-          setTimeout(() => { isAutoScrollingRef.current = false; }, 50);
+          window.scrollTo(0, targetY);
+          lastRestingYRef.current = targetY; 
+          setTimeout(() => { isAutoScrollingRef.current = false; }, 300);
         }
       };
-      autoScrollRafRef.current = requestAnimationFrame(step);
+      requestAnimationFrame(step);
     };
 
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      const vh = window.innerHeight;
-      const direction = currentY > lastScrollYRef.current ? "down" : "up";
-      lastScrollYRef.current = currentY;
-
       if (isAutoScrollingRef.current) return;
-      
-      // CRITICAL FIX: Removed the "if (currentY > (vh * 2.1)) return;" line.
-      // Now the auto-scroll will continue to work all the way down to your List section!
 
       if (scrollStopTimerRef.current) clearTimeout(scrollStopTimerRef.current);
 
       scrollStopTimerRef.current = setTimeout(() => {
-        const closestBoundary = Math.round(currentY / vh) * vh;
-        if (Math.abs(currentY - closestBoundary) <= 5) {
-          lastRestingYRef.current = closestBoundary;
-          return;
+        const currentY = window.scrollY;
+        const vh = window.innerHeight;
+        const maxScroll = document.documentElement.scrollHeight - vh;
+
+        // FREE SCROLL ZONE: Assumes sections 0, 1, 2, 3 are strict 100vh.
+        const FREE_SCROLL_START_VH = 3.1 * vh; 
+        
+        if (currentY >= FREE_SCROLL_START_VH) {
+            lastRestingYRef.current = Math.round(currentY / vh) * vh;
+            if (currentY > maxScroll - (vh * 0.5)) {
+                animateScroll(maxScroll);
+            }
+            return; 
         }
 
-        let targetY = direction === "down" 
-          ? lastRestingYRef.current + vh 
-          : lastRestingYRef.current - vh;
+        // SNAP LOGIC
+        const distanceScrolled = currentY - lastRestingYRef.current;
+        let targetY = lastRestingYRef.current;
 
-        const maxScroll = document.documentElement.scrollHeight - vh;
-        targetY = Math.max(0, Math.min(targetY, maxScroll));
-        
+        // If they deliberately swiped more than 20px, snap up/down. Otherwise snap back.
+        if (distanceScrolled > 20) {
+            targetY = lastRestingYRef.current + vh;
+        } else if (distanceScrolled < -20) {
+            targetY = lastRestingYRef.current - vh;
+        }
+
+        targetY = Math.max(0, Math.min(targetY, 3 * vh)); // Cap it at the List section
         animateScroll(targetY);
-      }, 45); 
+
+      }, 60); 
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
       if (scrollStopTimerRef.current) clearTimeout(scrollStopTimerRef.current);
-      if (autoScrollRafRef.current !== null) cancelAnimationFrame(autoScrollRafRef.current);
     };
   }, []);
 }

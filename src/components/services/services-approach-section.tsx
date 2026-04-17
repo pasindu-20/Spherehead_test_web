@@ -1,108 +1,165 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import React, { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import SiteContainer from "@/components/layout/site-container";
+import RotatingDots from "@/components/ui/rotating-dots";
+
+const approaches = [
+  { num: "01", title: "Expertise in Latest\nTech Stacks", desc: "Harnessing the power of the latest technologies to create future-ready solutions that elevate your business." },
+  { num: "02", title: "Agile and Rapid\nDevelopment", desc: "Delivering faster, adaptable solutions that evolve with your needs, ensuring quick turnarounds without sacrificing quality." },
+  { num: "03", title: "Seamless\nIntegration", desc: "Ensuring smooth integration with your existing systems for efficient workflows and uninterrupted operations." },
+  { num: "04", title: "Human-Centered\nInnovation", desc: "Focusing on user experience to design solutions that are intuitive, impactful, and designed with real people in mind." },
+  { num: "05", title: "Reliable & Secure\nDevelopment", desc: "Building dependable, secure solutions that safeguard your business and provide peace of mind." },
+  { num: "06", title: "Code Quality and\nVersion Control", desc: "Maintaining code quality with robust version control to ensure scalability, reliability, and smooth collaboration." }
+];
 
 export default function ServicesApproachSection() {
-  const targetRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [page, setPage] = useState(0); 
+  
+  const pageRef = useRef(page);
+  pageRef.current = page;
+  
+  const isAnimating = useRef(false);
 
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end end"]
-  });
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+    let edgeAccumulator = 0;
+    const EDGE_THRESHOLD = 100; 
+
+    const handleWheel = (e: WheelEvent) => {
+      if (isAnimating.current) {
+        e.preventDefault();
+        return;
+      }
+
+      const isScrollingDown = e.deltaY > 0;
+      const isScrollingUp = e.deltaY < 0;
+
+      if (isScrollingDown) {
+        if (pageRef.current === 0) {
+          e.preventDefault();
+          setPage(1);
+          isAnimating.current = true;
+          setTimeout(() => { isAnimating.current = false; }, 500);
+          return;
+        } else {
+          edgeAccumulator += e.deltaY;
+          if (edgeAccumulator > EDGE_THRESHOLD) {
+            edgeAccumulator = 0;
+            return; 
+          }
+          e.preventDefault();
+          return;
+        }
+      }
+
+      if (isScrollingUp) {
+        if (pageRef.current === 1) {
+          e.preventDefault();
+          setPage(0);
+          isAnimating.current = true;
+          setTimeout(() => { isAnimating.current = false; }, 500); 
+          return;
+        } else {
+          edgeAccumulator += Math.abs(e.deltaY);
+          if (edgeAccumulator > EDGE_THRESHOLD) {
+            edgeAccumulator = 0;
+            return; 
+          }
+          e.preventDefault();
+          return;
+        }
+      }
+    };
+
+    section.addEventListener("wheel", handleWheel, { passive: false });
+    return () => section.removeEventListener("wheel", handleWheel);
+  }, []);
+
+  const panel1 = approaches.slice(0, 3);
+  const panel2 = approaches.slice(3, 6);
 
   return (
-    // STRICT LAYERING: z-10 means it slides perfectly UNDER the white sections
-    <section ref={targetRef} className="relative z-10 w-full h-[200vh] bg-transparent text-white">
-      
-      {/* Fake Sticky Container - Back to purely transparent! */}
-      <motion.div 
-        style={{ y }} 
-        className="relative w-full h-[100vh] flex flex-col justify-center overflow-hidden bg-transparent"
-      >
-        <SiteContainer className="flex flex-col gap-16 lg:gap-24">
+    <section 
+      ref={sectionRef} 
+      className="relative z-10 w-full h-[100vh] bg-transparent text-white flex flex-col justify-center overflow-hidden"
+    >
+      <SiteContainer className="flex flex-col gap-12 lg:gap-16">
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col"
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <RotatingDots />
+            <span className="text-[14px] md:text-[15px] tracking-[0.1em] text-white/90 uppercase font-bold">
+              Strategic Approach
+            </span>
+          </div>
           
+          <h2 className="text-[36px] md:text-[48px] lg:text-[56px] font-light leading-[1.2] max-w-[900px]">
+            Powering Business Transformation through Precision Engineering
+          </h2>
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+          className="relative w-full overflow-hidden"
+        >
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col"
+            animate={{ x: page === 0 ? "0%" : "-50%" }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} 
+            className="flex w-[200%] gap-0 will-change-transform"
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="relative flex items-center justify-center w-5 h-5">
-                <div className="absolute w-2 h-2 rounded-full bg-[#92D9FF] top-0 left-0" />
-                <div className="absolute w-2 h-2 rounded-full bg-[#FD7624] bottom-0 left-0" />
-                <div className="absolute w-2 h-2 rounded-full bg-white right-0 top-1.5" />
-              </div>
-              <span className="text-[14px] md:text-[15px] tracking-[0.1em] text-white/90 uppercase font-bold">
-                Strategic Approach
-              </span>
-            </div>
             
-            <h2 className="text-[36px] md:text-[48px] lg:text-[56px] font-light leading-[1.2] max-w-[900px]">
-              Powering Business Transformation through Precision Engineering
-            </h2>
+            {/* PANEL 1 */}
+            <div className="w-1/2 shrink-0 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
+              {panel1.map((item, idx) => (
+                <div 
+                  key={item.num} 
+                  className={`flex flex-col gap-4 ${
+                    idx === 0 ? 'md:pr-8 lg:pr-12 md:border-r border-white/20' : 
+                    idx === 1 ? 'md:px-8 lg:px-12 md:border-r border-white/20' : 
+                    'md:pl-8 lg:pl-12'
+                  }`}
+                >
+                  <span className="text-[48px] lg:text-[64px] font-light text-white/90 leading-none mb-2">{item.num}</span>
+                  <h3 className="text-[22px] lg:text-[26px] font-normal leading-[1.3] whitespace-pre-line">{item.title}</h3>
+                  <p className="text-[14px] lg:text-[15px] text-white/70 leading-[1.7] mt-4 max-w-[320px]">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* PANEL 2 */}
+            <div className="w-1/2 shrink-0 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
+              {panel2.map((item, idx) => (
+                <div 
+                  key={item.num} 
+                  className={`flex flex-col gap-4 ${
+                    idx === 0 ? 'md:pr-8 lg:pr-12 md:border-r border-white/20' : 
+                    idx === 1 ? 'md:px-8 lg:px-12 md:border-r border-white/20' : 
+                    'md:pl-8 lg:pl-12'
+                  }`}
+                >
+                  <span className="text-[48px] lg:text-[64px] font-light text-white/90 leading-none mb-2">{item.num}</span>
+                  <h3 className="text-[22px] lg:text-[26px] font-normal leading-[1.3] whitespace-pre-line">{item.title}</h3>
+                  <p className="text-[14px] lg:text-[15px] text-white/70 leading-[1.7] mt-4 max-w-[320px]">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
           </motion.div>
+        </motion.div>
 
-          {/* Horizontal Track with GPU Acceleration */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="relative w-full overflow-hidden"
-          >
-            <motion.div 
-              style={{ x }} 
-              className="flex w-[200%] gap-0 transform-gpu will-change-transform [backface-visibility:hidden]"
-            >
-              
-              {/* PANEL 1 */}
-              <div className="w-1/2 shrink-0 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
-                <div className="flex flex-col gap-4 md:pr-8 lg:pr-12 md:border-r border-white/20">
-                  <span className="text-[48px] lg:text-[64px] font-light text-white/90 leading-none mb-2">01</span>
-                  <h3 className="text-[22px] lg:text-[26px] font-normal leading-[1.3]">Expertise in Latest<br/>Tech Stacks</h3>
-                  <p className="text-[14px] lg:text-[15px] text-white/70 leading-[1.7] mt-4 max-w-[320px]">Harnessing the power of the latest technologies to create future-ready solutions that elevate your business.</p>
-                </div>
-                <div className="flex flex-col gap-4 md:px-8 lg:px-12 md:border-r border-white/20">
-                  <span className="text-[48px] lg:text-[64px] font-light text-white/90 leading-none mb-2">02</span>
-                  <h3 className="text-[22px] lg:text-[26px] font-normal leading-[1.3]">Agile and Rapid<br/>Development</h3>
-                  <p className="text-[14px] lg:text-[15px] text-white/70 leading-[1.7] mt-4 max-w-[320px]">Delivering faster, adaptable solutions that evolve with your needs, ensuring quick turnarounds without sacrificing quality.</p>
-                </div>
-                <div className="flex flex-col gap-4 md:pl-8 lg:pl-12">
-                  <span className="text-[48px] lg:text-[64px] font-light text-white/90 leading-none mb-2">03</span>
-                  <h3 className="text-[22px] lg:text-[26px] font-normal leading-[1.3]">Seamless<br/>Integration</h3>
-                  <p className="text-[14px] lg:text-[15px] text-white/70 leading-[1.7] mt-4 max-w-[320px]">Ensuring smooth integration with your existing systems for efficient workflows and uninterrupted operations.</p>
-                </div>
-              </div>
-
-              {/* PANEL 2 */}
-              <div className="w-1/2 shrink-0 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
-                <div className="flex flex-col gap-4 md:pr-8 lg:pr-12 md:border-r border-white/20">
-                  <span className="text-[48px] lg:text-[64px] font-light text-white/90 leading-none mb-2">04</span>
-                  <h3 className="text-[22px] lg:text-[26px] font-normal leading-[1.3]">Human-Centered<br/>Innovation</h3>
-                  <p className="text-[14px] lg:text-[15px] text-white/70 leading-[1.7] mt-4 max-w-[320px]">Focusing on user experience to design solutions that are intuitive, impactful, and designed with real people in mind.</p>
-                </div>
-                <div className="flex flex-col gap-4 md:px-8 lg:px-12 md:border-r border-white/20">
-                  <span className="text-[48px] lg:text-[64px] font-light text-white/90 leading-none mb-2">05</span>
-                  <h3 className="text-[22px] lg:text-[26px] font-normal leading-[1.3]">Reliable & Secure<br/>Development</h3>
-                  <p className="text-[14px] lg:text-[15px] text-white/70 leading-[1.7] mt-4 max-w-[320px]">Building dependable, secure solutions that safeguard your business and provide peace of mind.</p>
-                </div>
-                <div className="flex flex-col gap-4 md:pl-8 lg:pl-12">
-                  <span className="text-[48px] lg:text-[64px] font-light text-white/90 leading-none mb-2">06</span>
-                  <h3 className="text-[22px] lg:text-[26px] font-normal leading-[1.3]">Code Quality and<br/>Version Control</h3>
-                  <p className="text-[14px] lg:text-[15px] text-white/70 leading-[1.7] mt-4 max-w-[320px]">Maintaining code quality with robust version control to ensure scalability, reliability, and smooth collaboration.</p>
-                </div>
-              </div>
-
-            </motion.div>
-          </motion.div>
-
-        </SiteContainer>
-      </motion.div>
+      </SiteContainer>
     </section>
   );
 }

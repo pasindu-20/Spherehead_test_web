@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"; // or "motion/react"
 import { Plus, Minus } from "lucide-react";
 import SiteContainer from "@/components/layout/site-container";
+import RotatingDots from "@/components/ui/rotating-dots";
+import TechStackCarousel from "@/components/ui/tech-stack-carousel";
 
 interface Service {
   id: string;
@@ -25,24 +27,70 @@ const servicesData: Service[] = [
 
 export default function ServicesListSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+
+    let edgeAccumulator = 0;
+    // Friction buffer: How hard the user must scroll against the edge to move the page
+    const EDGE_THRESHOLD = 150; 
+
+    const handleWheel = (e: WheelEvent) => {
+      const isAtTop = list.scrollTop <= 0;
+      // Added a 1px buffer to account for sub-pixel rendering in some browsers
+      const isAtBottom = Math.ceil(list.scrollTop + list.clientHeight) >= list.scrollHeight - 1;
+
+      // Scrolling UP while at the TOP of the list
+      if (e.deltaY < 0 && isAtTop) {
+        edgeAccumulator += Math.abs(e.deltaY);
+        if (edgeAccumulator > EDGE_THRESHOLD) {
+          window.scrollBy(0, e.deltaY);
+          edgeAccumulator = 0;
+        } else {
+          e.preventDefault(); 
+        }
+        return;
+      }
+
+      // Scrolling DOWN while at the BOTTOM of the list
+      if (e.deltaY > 0 && isAtBottom) {
+        edgeAccumulator += Math.abs(e.deltaY);
+        if (edgeAccumulator > EDGE_THRESHOLD) {
+          window.scrollBy(0, e.deltaY);
+          edgeAccumulator = 0;
+        } else {
+          e.preventDefault(); 
+        }
+        return;
+      }
+
+      // Reset buffer if scrolling normally inside the list
+      edgeAccumulator = 0;
+    };
+
+    list.addEventListener("wheel", handleWheel, { passive: false });
+    return () => list.removeEventListener("wheel", handleWheel);
+  }, []);
+
   return (
-    <>
-    {/* Removed snap-start so your custom useAutoScroll hook handles the physics without conflict */}
-    <section className="relative z-30 w-full h-[100vh] bg-transparent flex flex-col justify-end">
+    <section className="relative z-30 w-full min-h-[100vh] h-auto bg-transparent flex flex-col justify-end pt-[100px]">
       
-      <div className="w-full mt-auto h-[calc(100vh-40px)] md:h-[calc(100vh-60px)] bg-white rounded-t-[12px] overflow-hidden flex items-center py-10 lg:py-20 shadow-[0_-20px_50px_rgba(0,0,0,0.25)]">
-        <SiteContainer>
+      <div className="w-full mt-auto min-h-[calc(100vh-60px)] bg-white rounded-t-[12px] overflow-hidden flex flex-col pt-10 lg:pt-20 shadow-[0_-20px_50px_rgba(0,0,0,0.25)]">
+        
+        {/* TOP HALF: The Services Grid */}
+        <SiteContainer className="flex-grow">
           <div className="grid grid-cols-1 lg:grid-cols-[4.5fr_5.5fr] gap-12 lg:gap-24 items-start">
             
             {/* LEFT SIDE */}
             <div className="hidden lg:flex flex-col sticky top-0">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-2 h-2 rounded-full bg-[#FD7624]" />
+                <RotatingDots />
                 <p className="inter-tight text-[#2666d2] font-semibold tracking-wider uppercase text-sm">Digital Services</p>
               </div>
               <h2 className="text-[42px] leading-[1.1] font-light text-[#01030B] mb-2 max-w-md">
@@ -56,7 +104,6 @@ export default function ServicesListSection() {
                     animate={{ opacity: 1, height: "auto", marginTop: "2rem" }}
                     exit={{ opacity: 0, height: 0, marginTop: 0 }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}
-                    // Fixed Image Container: Solid flat background, rounded corners, left aligned.
                     className="relative w-full max-w-[360px] aspect-[4/3] rounded-[24px] overflow-hidden bg-[#F8F9FA]"
                   >
                     <AnimatePresence mode="wait">
@@ -84,7 +131,8 @@ export default function ServicesListSection() {
 
             {/* RIGHT SIDE */}
             <div 
-              className="flex flex-col overflow-y-auto max-h-[60vh] lg:max-h-[70vh] pr-2 lg:pr-6 pb-20 overscroll-contain [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+              ref={listRef} 
+              className="flex flex-col overflow-y-auto max-h-[60vh] lg:max-h-[70vh] pr-2 lg:pr-6 pb-20 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
               style={{
                 maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 100%)',
                 WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 100%)'
@@ -135,8 +183,11 @@ export default function ServicesListSection() {
             </div>
           </div>
         </SiteContainer>
+
+        {/* BOTTOM HALF: The Tech Stack Carousel */}
+        <TechStackCarousel />
+
       </div>
     </section>
-    </>
   );
 }
