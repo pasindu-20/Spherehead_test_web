@@ -1,15 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export interface TechItem {
   name: string;
   icon: string;
 }
 
-// Your default data
 const defaultTechStack: TechItem[] = [
   {
     name: "PowerBI",
@@ -56,12 +55,45 @@ interface TechStackCarouselProps {
 
 export default function TechStackCarousel({
   items = defaultTechStack,
-  // Default styling matches exactly what was in your ServicesListSection
-  className = "w-full pt-16 pb-12 mt-10 border-t border-gray-100 flex justify-center overflow-hidden bg-white",
+  // FIX: Removed border-t, border-gray-100, and mt-10
+  className = "w-full pt-10 pb-12 flex justify-center overflow-hidden bg-white",
 }: TechStackCarouselProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // Tracks the target position of the carousel
+  const x = useMotionValue(0);
+  
+  // Adds a smooth, fluid glide to the movement
+  const smoothX = useSpring(x, { damping: 40, stiffness: 150 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current || !trackRef.current) return;
+
+    const containerWidth = containerRef.current.offsetWidth;
+    const trackWidth = trackRef.current.scrollWidth;
+
+    // How far the track is allowed to scroll
+    const maxScroll = trackWidth - containerWidth;
+
+    // If the items don't overflow the container, no need to scroll
+    if (maxScroll <= 0) return;
+
+    // Find mouse position relative to the container
+    const rect = containerRef.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+
+    // Convert mouse position to a percentage (0 to 1)
+    const progress = Math.max(0, Math.min(mouseX / containerWidth, 1));
+
+    // Move the track in the opposite direction of the mouse
+    x.set(-(progress * maxScroll));
+  };
+
   return (
-    <div className={className}>
+    <div className={className} onMouseMove={handleMouseMove}>
       <div
+        ref={containerRef}
         className="relative w-full max-w-[1200px] flex items-center"
         style={{
           // The CSS Mask that fades the left and right edges
@@ -72,11 +104,11 @@ export default function TechStackCarousel({
         }}
       >
         <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+          ref={trackRef}
+          style={{ x: smoothX }} // Controlled by the mouse tracking now, not auto-animation
           className="flex items-center gap-16 md:gap-24 px-8 w-max"
         >
-          {/* Render the array twice for a seamless infinite loop */}
+          {/* Render the array twice so it overflows enough to allow movement */}
           {[...items, ...items].map((tech, i) => (
             <div
               key={i}

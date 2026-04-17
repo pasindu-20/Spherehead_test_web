@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion"; // or "motion/react"
+import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import SiteContainer from "@/components/layout/site-container";
 import RotatingDots from "@/components/ui/rotating-dots";
@@ -38,15 +38,12 @@ export default function ServicesListSection() {
     if (!list) return;
 
     let edgeAccumulator = 0;
-    // Friction buffer: How hard the user must scroll against the edge to move the page
     const EDGE_THRESHOLD = 150; 
 
     const handleWheel = (e: WheelEvent) => {
       const isAtTop = list.scrollTop <= 0;
-      // Added a 1px buffer to account for sub-pixel rendering in some browsers
       const isAtBottom = Math.ceil(list.scrollTop + list.clientHeight) >= list.scrollHeight - 1;
 
-      // Scrolling UP while at the TOP of the list
       if (e.deltaY < 0 && isAtTop) {
         edgeAccumulator += Math.abs(e.deltaY);
         if (edgeAccumulator > EDGE_THRESHOLD) {
@@ -58,7 +55,6 @@ export default function ServicesListSection() {
         return;
       }
 
-      // Scrolling DOWN while at the BOTTOM of the list
       if (e.deltaY > 0 && isAtBottom) {
         edgeAccumulator += Math.abs(e.deltaY);
         if (edgeAccumulator > EDGE_THRESHOLD) {
@@ -70,7 +66,6 @@ export default function ServicesListSection() {
         return;
       }
 
-      // Reset buffer if scrolling normally inside the list
       edgeAccumulator = 0;
     };
 
@@ -87,7 +82,6 @@ export default function ServicesListSection() {
         <SiteContainer className="flex-grow">
           <div className="grid grid-cols-1 lg:grid-cols-[4.5fr_5.5fr] gap-12 lg:gap-24 items-start">
             
-            {/* LEFT SIDE */}
             <div className="hidden lg:flex flex-col sticky top-0">
               <div className="flex items-center gap-3 mb-4">
                 <RotatingDots />
@@ -129,7 +123,6 @@ export default function ServicesListSection() {
               </AnimatePresence>
             </div>
 
-            {/* RIGHT SIDE */}
             <div 
               ref={listRef} 
               className="flex flex-col overflow-y-auto max-h-[60vh] lg:max-h-[70vh] pr-2 lg:pr-6 pb-20 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"

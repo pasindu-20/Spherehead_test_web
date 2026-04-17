@@ -86,6 +86,12 @@ export default function ServicesApproachSection() {
       ref={sectionRef} 
       className="relative z-10 w-full h-[100vh] bg-transparent text-white flex flex-col justify-center overflow-hidden"
     >
+      {/* CRITICAL FIX: The Overlapping White Bar
+        This sits at the absolute top of the section and mimics the bottom 
+        of the previous section to create the stacked card effect. 
+      */}
+      <div className="absolute top-0 left-0 w-full h-[30px] md:h-[90px] bg-white rounded-b-[12px] z-30" />
+
       <SiteContainer className="flex flex-col gap-12 lg:gap-16">
         
         <motion.div 
