@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { motion } from "motion/react";
 
@@ -53,7 +55,7 @@ export default function CyclicButton({ onClick, children, className = "" }: Cycl
 
         {/* White Circle (Center base, moves Right) */}
         <motion.div
-          className="absolute w-3 h-3 rounded-full z-10"
+          className="absolute z-10 w-3 h-3 rounded-full"
           style={{ backgroundColor: "#FFFFFF" }}
           variants={{
             initial: { x: 0, y: 0 },
@@ -63,9 +65,27 @@ export default function CyclicButton({ onClick, children, className = "" }: Cycl
         />
       </motion.div>
       
-      <span className="text-[18px] md:text-[20px] tracking-wide" style={{ fontFamily: "var(--font-inter-tight)" }}>
-        {children}
-      </span>
+      {/* TEXT SLIDE ANIMATION */}
+      <div className="relative overflow-hidden h-[28px] md:h-[30px]">
+        <motion.div
+          className="flex flex-col"
+          animate={isHovered ? { y: "-50%" } : { y: "0%" }}
+          transition={{ duration: 0.45, ease: "easeInOut" }}
+        >
+          <span 
+            className="flex items-center h-[28px] md:h-[30px] text-[18px] md:text-[20px] tracking-wide" 
+            style={{ fontFamily: "var(--font-inter-tight)" }}
+          >
+            {children}
+          </span>
+          <span 
+            className="flex items-center h-[28px] md:h-[30px] text-[18px] md:text-[20px] tracking-wide" 
+            style={{ fontFamily: "var(--font-inter-tight)" }}
+          >
+            {children}
+          </span>
+        </motion.div>
+      </div>
     </button>
   );
 }
