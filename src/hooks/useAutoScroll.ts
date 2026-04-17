@@ -48,8 +48,8 @@ export default function useAutoScroll() {
 
       if (isAutoScrollingRef.current) return;
       
-      // Pause snapping logic if we are deep in the horizontal section
-      if (currentY > (vh * 2.1)) return;
+      // CRITICAL FIX: Removed the "if (currentY > (vh * 2.1)) return;" line.
+      // Now the auto-scroll will continue to work all the way down to your List section!
 
       if (scrollStopTimerRef.current) clearTimeout(scrollStopTimerRef.current);
 

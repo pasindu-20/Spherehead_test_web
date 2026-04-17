@@ -29,9 +29,8 @@ export default function ServicesIntroSection() {
   return (
     <section 
       ref={containerRef} 
-      // 'isolate' acts as the back wall. The hole punch stops erasing here.
-      // Removed all rounded corners!
-      className="relative z-30 isolate w-full max-w-full h-[100vh] flex flex-col justify-center overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+      // FIX: Added `snap-start` and `snap-always` to force the browser to perfectly align this section and prevent mid-level resting.
+      className="relative z-30 isolate w-full max-w-full h-[100vh] flex flex-col justify-center overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] snap-start snap-always"
     >
       {/* LAYER 1: The White Columns */}
       <div className="absolute inset-0 flex w-full h-full pointer-events-none">
@@ -55,7 +54,6 @@ export default function ServicesIntroSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[3.5fr_6.5fr] gap-8 lg:gap-14 items-center w-full">
           
-          {/* CRITICAL FIX 2: Removed <motion.div> from this wrapper so it doesn't build an invisible wall! */}
           <div className="relative w-full aspect-square max-w-[320px] lg:max-w-none mx-auto lg:mx-0">
             
             {/* THE HOLE PUNCH: This cleanly erases the white columns! */}
