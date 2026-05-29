@@ -26,7 +26,7 @@ export default function CareersPage() {
       <main className="w-full overflow-x-hidden">
         <CareersHero />
 
-        <div className="w-full bg-white text-[#01030B] z-10 relative">
+        <div className="w-full text-[#01030B] z-10 relative">
           <OurCulture />
         </div>
 
@@ -45,7 +45,7 @@ export default function CareersPage() {
     >
       <CareersHero />
 
-      <div className="w-full bg-white text-[#01030B] z-10 relative">
+      <div className="w-full text-[#01030B] z-10 relative">
         <OurCulture />
       </div>
 
