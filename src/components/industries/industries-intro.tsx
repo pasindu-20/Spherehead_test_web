@@ -10,8 +10,34 @@ import {
 
 import RotatingDots from "@/components/ui/rotating-dots";
 import SiteContainer from "../layout/site-container";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 
-export default function IndustriesIntro() {
+function IndustriesIntroMobile() {
+  return (
+    <section className="relative z-20 w-full bg-white pt-16 pb-10">
+      <SiteContainer>
+        <div className="flex flex-col gap-6">
+          <h2 className="heading-2 !text-[#01030B]">
+            We serve{" "}
+            <span className="text-[#0D54CA]">diverse industries</span>{" "}
+            with tailored digital solutions powered by{" "}
+            <span className="text-[#0D54CA]">advanced technologies</span>,
+            helping businesses innovate, scale, and succeed in a rapidly
+            evolving world.
+          </h2>
+
+          <p className="body-small !text-[#8A8B8F]">
+            By understanding the unique needs of each industry, we apply
+            the right technologies and strategies to build scalable,
+            efficient, and future-ready digital experiences.
+          </p>
+        </div>
+      </SiteContainer>
+    </section>
+  );
+}
+
+function IndustriesIntroDesktop() {
   const ref = useRef<HTMLElement | null>(null);
   const lastProgress = useRef(0);
   const hasSnapped = useRef(false);
@@ -81,7 +107,7 @@ export default function IndustriesIntro() {
         >
           <SiteContainer className="h-full">
             <div className="flex h-full flex-col justify-center pb-24 pt-20">
-              <div className="mb-8 flex items-center gap-3">
+              <div className="flex items-center gap-3">
                 <RotatingDots variant="light" />
 
                 <span className="body-small !text-[#01030B]">
@@ -89,39 +115,23 @@ export default function IndustriesIntro() {
                 </span>
               </div>
 
-              <div className="grid items-start gap-12 lg:grid-cols-[1.15fr_1fr]">
-                <div>
-                  <h2 className="heading-2 max-w-none !text-[36px] !leading-[42px] !text-[#01030B]">
-                    <span className="block whitespace-nowrap">
-                      We serve{" "}
-                      <span className="text-[#0D54CA]">diverse industries</span>{" "}
-                      with tailored digital
-                    </span>
-                    <span className="block whitespace-nowrap">
-                      solutions powered by{" "}
-                      <span className="text-[#0D54CA]">
-                        advanced technologies
-                      </span>
-                      ,
-                    </span>
-                    <span className="block whitespace-nowrap">
-                      helping businesses innovate, scale, and
-                    </span>
-                    <span className="block whitespace-nowrap">
-                      succeed in a rapidly evolving world.
-                    </span>
-                  </h2>
-                </div>
+              <div className="mt-5 max-w-[950px]">
+                <h2 className="heading-2 !text-[#01030B]">
+                  We serve{" "}
+                  <span className="text-[#0D54CA]">diverse industries</span>{" "}
+                  with tailored digital solutions powered by{" "}
+                  <span className="text-[#0D54CA]">advanced technologies</span>,
+                  helping businesses innovate, scale, and succeed in a rapidly
+                  evolving world.
+                </h2>
+              </div>
 
-                <div className="flex justify-start lg:justify-start lg:pl-4 lg:pt-28">
-                  <p className="body-large w-[min(760px,48vw)] max-w-none whitespace-nowrap !text-[18px] !leading-[28px] !text-[#8A8B8F]">
-                    By understanding the unique needs of each industry, we apply
-                    <br />
-                    the right technologies and strategies to build
-                    <br />
-                    scalable, efficient, and future-ready digital experiences.
-                  </p>
-                </div>
+              <div className="max-w-[620px] pt-16 lg:ml-[680px] lg:pt-14">
+                <p className="body-large text-[#808080]">
+                  By understanding the unique needs of each industry, we apply
+                  the right technologies and strategies to build
+                  scalable, efficient, and future-ready digital experiences.
+                </p>
               </div>
             </div>
           </SiteContainer>
@@ -129,4 +139,14 @@ export default function IndustriesIntro() {
       </div>
     </section>
   );
+}
+
+export default function IndustriesIntro() {
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return <IndustriesIntroMobile />;
+  }
+
+  return <IndustriesIntroDesktop />;
 }
