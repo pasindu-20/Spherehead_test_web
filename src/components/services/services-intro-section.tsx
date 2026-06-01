@@ -1,6 +1,12 @@
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValue,
+} from "framer-motion";
 import SiteContainer from "@/components/layout/site-container";
 import { ServiceCategoryData } from "@/data/service-categories";
 import { useIsMobile } from "@/hooks/use-is-mobile";
@@ -32,28 +38,45 @@ function ServicesIntroMobile({ data }: { data: ServiceCategoryData["intro"] }) {
         </div>
 
         {/* Heading paragraph */}
-        <p className="body-medium mt-6 !text-black">
-          {data.heading}
-        </p>
-        <div className="relative mt-8 w-[65%] aspect-[3/4] overflow-hidden rounded-[4px] bg-animated-gradient">
-          <div className="absolute inset-5 z-10 overflow-hidden rounded-xl">
-            <Image src={data.image} alt="Section Image" fill sizes="65vw" className="object-contain" />
-          </div>
+        <p className="body-medium mt-6 !text-black">{data.heading}</p>
+
+        {/* Updated Image Section: Animated bounce and floor shadow */}
+        <div className="relative mt-8 mx-auto w-[65%] aspect-[3/4] flex flex-col items-center justify-center">
+          {/* Animated Floor Shadow - THINNER */}
+          <motion.div
+            animate={{ scale: [1, 0.8, 1], opacity: [0.2, 0.05, 0.2] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[70%] h-[8px] bg-black blur-[6px] rounded-[50%] z-0"
+          />
+
+          <motion.div
+            className="absolute inset-5 z-10"
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Image
+              src={data.image}
+              alt="Section Image"
+              fill
+              sizes="65vw"
+              className="object-contain drop-shadow-sm"
+            />
+          </motion.div>
         </div>
 
         {/* p1 and p2 below image */}
-        <p className="body-small mt-8 !text-[#8A8B8F]">
-          {data.p1}
-        </p>
-        <p className="body-small mt-6 !text-[#8A8B8F]">
-          {data.p2}
-        </p>
+        <p className="body-small mt-8 !text-[#8A8B8F]">{data.p1}</p>
+        <p className="body-small mt-6 !text-[#8A8B8F]">{data.p2}</p>
       </SiteContainer>
     </section>
   );
 }
 
-function ServicesIntroDesktop({ data }: { data: ServiceCategoryData["intro"] }) {
+function ServicesIntroDesktop({
+  data,
+}: {
+  data: ServiceCategoryData["intro"];
+}) {
   const containerRef = useRef<HTMLElement>(null);
   const colContainerRef = useRef<HTMLDivElement>(null);
   const contentWrapRef = useRef<HTMLDivElement>(null);
@@ -156,12 +179,19 @@ function ServicesIntroDesktop({ data }: { data: ServiceCategoryData["intro"] }) 
     };
     window.addEventListener("approach-snap-to-intro", handleApproachSnap);
 
-    const animateScrollTo = (targetY: number, duration: number, cb?: () => void) => {
+    const animateScrollTo = (
+      targetY: number,
+      duration: number,
+      cb?: () => void,
+    ) => {
       state = "animating";
       const startY = window.scrollY;
       const distance = targetY - startY;
       if (Math.abs(distance) < 2) {
-        window.scrollTo({ top: targetY, behavior: "instant" as ScrollBehavior });
+        window.scrollTo({
+          top: targetY,
+          behavior: "instant" as ScrollBehavior,
+        });
         cb?.();
         return;
       }
@@ -302,7 +332,9 @@ function ServicesIntroDesktop({ data }: { data: ServiceCategoryData["intro"] }) 
         accumulator += Math.abs(e.deltaY);
         eventCount += 1;
 
-        const hasIntent = accumulator >= ACCUMULATOR_THRESHOLD || eventCount >= EVENT_COUNT_THRESHOLD;
+        const hasIntent =
+          accumulator >= ACCUMULATOR_THRESHOLD ||
+          eventCount >= EVENT_COUNT_THRESHOLD;
 
         if (!hasIntent) {
           return;
@@ -444,13 +476,20 @@ function ServicesIntroDesktop({ data }: { data: ServiceCategoryData["intro"] }) 
       data-hide-navbar
       className="relative z-30 isolate flex h-screen w-full flex-col justify-center overflow-hidden"
     >
-      <div ref={colContainerRef} className="pointer-events-none absolute inset-0 flex h-[120vh] w-full">
+      <div
+        ref={colContainerRef}
+        className="pointer-events-none absolute inset-0 flex h-[120vh] w-full"
+      >
         <motion.div style={{ y: col1Y }} className="h-full w-1/3 bg-white" />
         <motion.div style={{ y: col2Y }} className="h-full w-1/3 bg-white" />
         <motion.div style={{ y: col3Y }} className="h-full w-1/3 bg-white" />
       </div>
 
-      <motion.div ref={contentWrapRef} style={{ y: contentY, opacity: contentOpacity }} className="relative z-40 w-full">
+      <motion.div
+        ref={contentWrapRef}
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative z-40 w-full"
+      >
         <SiteContainer className="relative flex h-full max-h-[950px] flex-col justify-center py-6 lg:py-10">
           <div className="w-full max-w-[1100px]">
             <p
@@ -462,16 +501,36 @@ function ServicesIntroDesktop({ data }: { data: ServiceCategoryData["intro"] }) 
           <div className="my-5 h-[1px] w-full bg-gray-200 lg:my-8" />
 
           <div className="grid w-full grid-cols-1 items-start gap-8 lg:grid-cols-[3.5fr_6.5fr] lg:gap-16">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-[260px] overflow-hidden rounded-[4px] bg-animated-gradient lg:mx-0 lg:max-w-[360px]">
-              <div className="absolute inset-6 z-10 overflow-hidden rounded-2xl lg:inset-8">
+            {/* Updated Image Section: Animated bounce and floor shadow */}
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-[260px] lg:mx-0 lg:max-w-[360px] flex flex-col items-center justify-center">
+              {/* Animated Floor Shadow - THINNER */}
+              <motion.div
+                animate={{ scale: [1, 0.8, 1], opacity: [0.2, 0.05, 0.2] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[70%] h-[8px] bg-black blur-[8px] rounded-[50%] z-0"
+              />
+
+              <motion.div
+                className="absolute inset-6 z-10 lg:inset-8"
+                animate={{ y: [0, -40, 0] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
                 <Image
                   src={data.image}
                   alt="Section Image"
                   fill
                   sizes="(max-width: 768px) 260px, 360px"
-                  className="object-contain"
+                  className="object-contain drop-shadow-sm"
                 />
-              </div>
+              </motion.div>
             </div>
 
             <div className="mt-8 flex w-full flex-col lg:mt-16">
@@ -479,10 +538,16 @@ function ServicesIntroDesktop({ data }: { data: ServiceCategoryData["intro"] }) 
                 {data.heading}
               </p>
               <div className="mt-8 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-12 lg:gap-16">
-                <p className="body-small" style={{ color: "#8A8B8F", lineHeight: "1.6" }}>
+                <p
+                  className="body-small"
+                  style={{ color: "#8A8B8F", lineHeight: "1.6" }}
+                >
                   {data.p1}
                 </p>
-                <p className="body-small" style={{ color: "#8A8B8F", lineHeight: "1.6" }}>
+                <p
+                  className="body-small"
+                  style={{ color: "#8A8B8F", lineHeight: "1.6" }}
+                >
                   {data.p2}
                 </p>
               </div>
