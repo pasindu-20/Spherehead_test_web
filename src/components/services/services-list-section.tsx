@@ -226,8 +226,19 @@ export default function ServicesListSection({ data }: { data: ServiceCategoryDat
                   <h2 className="heading-2 !text-[#01030B] mb-2 max-w-md">
                     {data.listTitle}
                   </h2>
-                  <div className="mt-8 bg-animated-gradient w-full max-w-[360px] overflow-hidden">
-                    <div className="relative w-full aspect-[4/3]">
+                  
+                  {/* Updated Image Wrapper: Removed background block, added separated bouncing object and shadow */}
+                  <div className="mt-8 w-full max-w-[360px]">
+                    <div className="relative w-full aspect-[4/3] flex flex-col items-center justify-center">
+                      
+                      {/* Animated Floor Shadow */}
+                      <motion.div
+                        animate={{ scale: [1, 0.8, 1], opacity: [0.2, 0.05, 0.2] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[70%] h-[20px] bg-black blur-[8px] rounded-[50%] z-0"
+                      />
+
+                      {/* Transition Presence for Swapping Images */}
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={activeIndex ?? "default"}
@@ -235,27 +246,34 @@ export default function ServicesListSection({ data }: { data: ServiceCategoryDat
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.4, ease: "easeInOut" }}
-                          className="absolute inset-0"
+                          className="absolute inset-0 z-10"
                         >
-                          <Image
-                            src={
-                              activeIndex !== null
-                                ? data.items[activeIndex].image
-                                : data.items[0].image
-                            }
-                            alt={
-                              activeIndex !== null
-                                ? data.items[activeIndex].title
-                                : data.items[0].title
-                            }
-                            fill
-                            sizes="360px"
-                            className="object-contain p-4"
-                          />
+                          {/* Inner Infinite Bounce Animation */}
+                          <motion.div
+                            animate={{ y: [0, -40, 0] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                            className="w-full h-full relative"
+                          >
+                            <Image
+                              src={
+                                activeIndex !== null
+                                  ? data.items[activeIndex].image
+                                  : data.items[0].image
+                              }
+                              alt={
+                                activeIndex !== null
+                                  ? data.items[activeIndex].title
+                                  : data.items[0].title
+                              }
+                              fill
+                              sizes="360px"
+                              className="object-contain p-4 drop-shadow-sm" 
+                            />
+                          </motion.div>
                         </motion.div>
                       </AnimatePresence>
                     </div>
-                  </div>
+                  </div>              
                 </div>
 
                 <div className="relative flex flex-col pr-2 lg:pr-6 h-full overflow-hidden">

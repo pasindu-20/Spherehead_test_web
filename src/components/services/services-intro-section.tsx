@@ -35,10 +35,30 @@ function ServicesIntroMobile({ data }: { data: ServiceCategoryData["intro"] }) {
         <p className="body-medium mt-6 !text-black">
           {data.heading}
         </p>
-        <div className="relative mt-8 w-[65%] aspect-[3/4] overflow-hidden rounded-[4px] bg-animated-gradient">
-          <div className="absolute inset-5 z-10 overflow-hidden rounded-xl">
-            <Image src={data.image} alt="Section Image" fill sizes="65vw" className="object-contain" />
-          </div>
+
+        {/* Updated Image Section: Animated bounce and floor shadow */}
+        <div className="relative mt-8 mx-auto w-[65%] aspect-[3/4] flex flex-col items-center justify-center">
+          
+          {/* Animated Floor Shadow - THINNER */}
+          <motion.div
+            animate={{ scale: [1, 0.8, 1], opacity: [0.2, 0.05, 0.2] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[70%] h-[8px] bg-black blur-[6px] rounded-[50%] z-0"
+          />
+
+          <motion.div 
+            className="absolute inset-5 z-10"
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Image 
+              src={data.image} 
+              alt="Section Image" 
+              fill 
+              sizes="65vw" 
+              className="object-contain drop-shadow-sm" 
+            />
+          </motion.div>
         </div>
 
         {/* p1 and p2 below image */}
@@ -462,16 +482,30 @@ function ServicesIntroDesktop({ data }: { data: ServiceCategoryData["intro"] }) 
           <div className="my-5 h-[1px] w-full bg-gray-200 lg:my-8" />
 
           <div className="grid w-full grid-cols-1 items-start gap-8 lg:grid-cols-[3.5fr_6.5fr] lg:gap-16">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-[260px] overflow-hidden rounded-[4px] bg-animated-gradient lg:mx-0 lg:max-w-[360px]">
-              <div className="absolute inset-6 z-10 overflow-hidden rounded-2xl lg:inset-8">
+            
+            {/* Updated Image Section: Animated bounce and floor shadow */}
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-[260px] lg:mx-0 lg:max-w-[360px] flex flex-col items-center justify-center">
+              
+              {/* Animated Floor Shadow - THINNER */}
+              <motion.div
+                animate={{ scale: [1, 0.8, 1], opacity: [0.2, 0.05, 0.2] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[70%] h-[8px] bg-black blur-[8px] rounded-[50%] z-0"
+              />
+
+              <motion.div 
+                className="absolute inset-6 z-10 lg:inset-8"
+                animate={{ y: [0, -40, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
                 <Image
                   src={data.image}
                   alt="Section Image"
                   fill
                   sizes="(max-width: 768px) 260px, 360px"
-                  className="object-contain"
+                  className="object-contain drop-shadow-sm"
                 />
-              </div>
+              </motion.div>
             </div>
 
             <div className="mt-8 flex w-full flex-col lg:mt-16">
