@@ -8,8 +8,6 @@ import {
   Variants,
 } from "framer-motion";
 import RotatingDots from "../ui/rotating-dots";
-import { useIsMobile } from "@/hooks/use-is-mobile";
-
 // ── Icon Box (supports image URL) ──
 type IconBoxProps = {
   src?: string;
@@ -283,11 +281,14 @@ function DesignStackDesktop() {
 
 // ── MAIN ──
 export default function DesignStack() {
-  const isMobile = useIsMobile();
-
-  if (isMobile) {
-    return <DesignStackMobile />;
-  }
-
-  return <DesignStackDesktop />;
+  return (
+    <>
+      <div className="lg:hidden">
+        <DesignStackMobile />
+      </div>
+      <div className="hidden lg:block">
+        <DesignStackDesktop />
+      </div>
+    </>
+  );
 }

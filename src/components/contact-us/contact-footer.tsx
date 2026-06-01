@@ -27,7 +27,7 @@ export default function ContactFooter() {
             </div>
 
             {/* Legal Links */}
-            <p className="body-extra-small text-white/60 flex gap-2">
+            <p className="body-extra-small text-white flex gap-2">
               <a href="#" className="hover:opacity-100 transition">Legal Policies</a> /
               <a href="#" className="hover:opacity-100 transition">Terms of Services</a> /
               <a href="#" className="hover:opacity-100 transition">Privacy Policies</a>

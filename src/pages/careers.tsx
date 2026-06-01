@@ -5,53 +5,34 @@ import OurCulture from "@/components/careers/careers-our-culture";
 import StayConnected from "@/components/careers/careers-stay-connected";
 import InternshipPrograms from "@/components/careers/careers-internship-programs";
 import Footer from "@/components/layout/footer";
-import { useIsMobile } from "@/hooks/use-is-mobile";
 
 export default function CareersPage() {
-  const isMobile = useIsMobile();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const { setScrollContainerRef } = useScrollContainerContext();
 
   useEffect(() => {
-    if (!isMobile) {
-      setScrollContainerRef(scrollContainerRef);
-    }
+    // We attach the ref universally; the scroll context will use it if needed.
+    // CSS handles making this container the scroll area on desktop.
+    setScrollContainerRef(scrollContainerRef);
     return () => {
       setScrollContainerRef(null);
     };
-  }, [scrollContainerRef, setScrollContainerRef, isMobile]);
-
-  if (isMobile) {
-    return (
-      <main className="w-full overflow-x-hidden">
-        <CareersHero />
-
-        <div className="w-full bg-white text-[#01030B] z-10 relative">
-          <OurCulture />
-        </div>
-
-        <StayConnected />
-        <InternshipPrograms />
-
-        <Footer />
-      </main>
-    );
-  }
+  }, [scrollContainerRef, setScrollContainerRef]);
 
   return (
     <main
       ref={scrollContainerRef}
-      className="w-full snap-y snap-mandatory h-screen overflow-y-auto"
+      className="w-full max-lg:overflow-x-hidden lg:h-screen lg:overflow-y-auto"
     >
       <CareersHero />
 
-      <div className="w-full bg-white text-[#01030B] z-10 relative">
+      <div className="w-full text-[#01030B] z-10 relative">
         <OurCulture />
       </div>
 
       <StayConnected />
       <InternshipPrograms />
-      <div className="w-full shrink-0 snap-start">
+      <div className="lg:w-full lg:shrink-0 lg:snap-start">
         <Footer />
       </div>
     </main>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
@@ -152,10 +152,10 @@ export default function CaseStudyDetail() {
   const [activeSection, setActiveSection] = useState("overview");
   const [isExiting, setIsExiting] = useState(false);
 
+  const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
-  const isMobile = useIsMobile();
 
-  const blueBarY = useTransform(scrollY, [0, 300], [0, isMobile ? 0 : -400]);
+  const blueBarY = useTransform(scrollY, [0, 300], [0, -400]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -183,31 +183,25 @@ export default function CaseStudyDetail() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const studyIndex = CASE_STUDY_DETAILS.findIndex((s) => s.slug === slug);
-  const study = CASE_STUDY_DETAILS[studyIndex];
-
-  useEffect(() => {
-    if (studyIndex >= 0) {
-      sessionStorage.setItem("spherehead_slider_page", studyIndex.toString());
-    }
-  }, [studyIndex]);
-
   const handleBackClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (isExiting) return;
-    setIsExiting(true);
-
-    if (studyIndex >= 0) {
-      sessionStorage.setItem("spherehead_slider_page", studyIndex.toString());
-    }
-
-    // Go immediately back so layout transition fires instantly
     if (window.history.length > 1) {
       router.back();
     } else {
       router.push("/case-studies");
     }
   };
+
+  if (!router.isReady) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  }
+
+  const studyIndex = CASE_STUDY_DETAILS.findIndex((s) => s.slug === slug);
+  const study = CASE_STUDY_DETAILS[studyIndex];
 
   if (!study) {
     return (
@@ -450,9 +444,8 @@ export default function CaseStudyDetail() {
                 clipPath: isMobile ? "none" : "inset(0 0 100% 0)",
                 transition: { duration: isMobile ? 0 : 0.6, ease: EASE },
               }}
-              className={`w-full bg-[#0A2F76] px-6 lg:px-16 text-white relative z-0 flex flex-col justify-end lg:justify-start lg:block ${
-                isMobile ? "h-[88svh] pb-28 pt-24" : "pt-32 pb-48 lg:pb-64"
-              }`}
+              className={`w-full bg-[#0A2F76] px-6 lg:px-16 text-white relative z-0 flex flex-col justify-end lg:justify-start lg:block ${isMobile ? "h-[88svh] pb-28 pt-24" : "pt-32 pb-48 lg:pb-64"
+                }`}
             >
               <motion.div
                 initial={
@@ -471,10 +464,10 @@ export default function CaseStudyDetail() {
                   isMobile
                     ? { display: "none" }
                     : {
-                        opacity: 0,
-                        y: -40,
-                        transition: { duration: 0.45, ease: "easeInOut" },
-                      }
+                      opacity: 0,
+                      y: -40,
+                      transition: { duration: 0.45, ease: "easeInOut" },
+                    }
                 }
                 className="max-w-[1400px] mx-auto w-full flex flex-col"
               >
@@ -492,34 +485,23 @@ export default function CaseStudyDetail() {
             </motion.section>
 
             {/* ── 2. HERO IMAGE ── */}
-            <div
-              className={`relative z-10 pointer-events-none ${
-                isMobile ? "-mt-24" : "-mt-48"
-              }`}
-            >
+            <div className="relative z-10 pointer-events-none -mt-32 lg:-mt-48">
               <section className="max-w-[1400px] mx-auto px-6 lg:px-16">
                 <motion.div
-                  layout={!isMobile}
-                  layoutId={
-                    !isMobile ? `shared-slide-${studyIndex}` : undefined
-                  }
+                  layout
+                  layoutId={`shared-slide-${studyIndex}`}
                   initial={false}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 1 }}
                   transition={{
-                    layout: {
-                      type: "tween",
-                      ease: [0.76, 0, 0.24, 1],
-                      duration: 1.2,
-                    },
+                    duration: 1.0,
+                    ease: EASE,
+                    layout: { duration: 1.0, ease: EASE },
                   }}
-                  style={{
-                    transformOrigin: "left top",
-                    zIndex: isExiting ? 50 : 1,
-                  }}
+                  style={{ transformOrigin: "left top" }}
                   className="w-full relative pointer-events-auto"
                 >
-                  <div className="absolute top-6 right-6 bg-white px-4 py-1.5 body-extra-small !text-[#0A2F76] rounded-sm z-20">
+                  <div className="absolute top-6 right-6 bg-white px-4 py-1.5 body-extra-small text-[#0A2F76] rounded-sm z-20">
                     {study.category}
                   </div>
 
@@ -544,18 +526,34 @@ export default function CaseStudyDetail() {
             </div>
 
             {/* ── 3. CONTENT GRID ── */}
-            <div className="relative z-20 bg-white max-w-[1400px] mx-auto px-6 lg:px-16 pb-12 lg:pb-32 pt-12 lg:pt-24">
+            <motion.section
+              initial={{ opacity: 0, y: 30 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.8, delay: 0.5, ease: "easeOut" },
+              }}
+              // 5. CARD CHOREOGRAPHY: Added y: 80 to make the white card slide DOWN on exit
+              exit={{
+                opacity: 0,
+                y: 80,
+                transition: { duration: 0.5, ease: "easeIn" },
+              }}
+              className="relative z-20 bg-white max-w-[1400px] mx-auto px-6 lg:px-16 pt-24 pb-32"
+            >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+                {/* LEFT: STICKY SIDEBAR */}
                 <div className="hidden lg:block lg:col-span-3 sticky top-32 self-start">
                   <div className="flex items-center gap-8 mb-10">
                     <div className="w-5 h-5">
                       <RotatingDots variant="light" />
                     </div>
-                    <span className="body-small font-semibold !text-[#01030B] tracking-wider">
+                    <span className="body-small font-semibold text-[#01030B] tracking-wider">
                       Project Key Information
                     </span>
                   </div>
 
+                  {/* CHANGED: Removed the border classes, but kept the pl-8 padding */}
                   <div className="flex flex-col pl-8">
                     <SidebarLink
                       href="#overview"
@@ -595,6 +593,7 @@ export default function CaseStudyDetail() {
                   </div>
                 </div>
 
+                {/* RIGHT: TEXT CONTENT */}
                 <div className="lg:col-span-9 flex flex-col gap-16 text-[#333]">
                   <div id="overview" className="scroll-mt-32">
                     <p className="whitespace-pre-wrap leading-relaxed text-[#55565C] mb-10">
@@ -683,7 +682,7 @@ export default function CaseStudyDetail() {
                       {study.technologies?.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-4 py-2 bg-gray-100 text-gray-700 rounded-sm body-medium"
+                          className="px-4 py-2 bg-gray-100 text-gray-700 rounded-sm text-sm font-medium"
                         >
                           {tech}
                         </span>
@@ -698,9 +697,8 @@ export default function CaseStudyDetail() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        )}
+            </motion.section>
+          </motion.div>
       </main>
       <Footer />
     </>
@@ -719,11 +717,12 @@ function SidebarLink({
   return (
     <a
       href={href}
-      className={`body-medium py-3 pl-6 border-l-2 transition-colors duration-300 leading-tight ${
-        isActive
-          ? "border-[#0D54CA] !text-[#0D54CA] body-medium"
-          : "border-gray-300 hover:text-gray-900"
-      }`}
+      // CHANGED: Removed -ml-[2px]
+      className={`body-medium py-3 pl-6 border-l-2 transition-colors duration-300 leading-tight ${isActive
+        ? "border-[#0D54CA] !text-[#0D54CA] font-medium"
+        : // CHANGED: Replaced border-transparent with border-gray-200 (and fixed text-gray-500)
+        "border-gray-200 text-gray-500 hover:text-gray-900"
+        }`}
     >
       {label}
     </a>

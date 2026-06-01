@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 // Basic sanitization to prevent HTML injection in emails
 const sanitize = (str: string) =>
-  str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  str ? str.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "";
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,11 +15,11 @@ export default async function handler(
   }
 
   // Extract form data from request body
-  const { name, email, phone, message } = req.body;
+  const { option, name, phone, email, areaOfInterest, message, confirm } = req.body;
 
   // Validate required fields
-  if (!name || !email || !phone || !message) {
-    return res.status(400).json({ message: "All fields are required." });
+  if (!name || !email || !message || !confirm) {
+    return res.status(400).json({ message: "Required fields are missing." });
   }
 
   // Email format validation (basic regex check)
@@ -38,11 +38,11 @@ export default async function handler(
     return res.status(500).json({ message: "Email config missing" });
   }
 
-  // Create SMTP transporter using Gmail
+  // Create SMTP transporter using Zoho
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // false for port 587 (TLS)
+    host: "smtp.zoho.com",
+    port: 465,
+    secure: true, // true for port 465
     auth: {
       user: emailUser,
       pass: emailPass,
@@ -50,26 +50,32 @@ export default async function handler(
   });
 
   // Sanitize user inputs to prevent HTML injection
+  const safeOption = sanitize(option);
   const safeName = sanitize(name);
   const safeEmail = sanitize(email);
   const safePhone = sanitize(phone);
+  const safeAreaOfInterest = sanitize(areaOfInterest);
   const safeMessage = sanitize(message);
 
   try {
     // ===========================
-    // 1. EMAIL TO YOUR COMPANY
+    // 1. EMAIL TO COMPANY ZOHO INBOX
     // ===========================
     await transporter.sendMail({
-      from: `"Spherehead Website" <${emailUser}>`, // Must remain your email to prevent spoofing bans
+      from: `"${safeName}" <${emailUser}>`, // Must remain your email to prevent spoofing bans
       to: emailUser, // Receive in company inbox
-      replyTo: safeEmail, // Clicking 'Reply' in Gmail will reply to the customer
-      subject: `Contact Message from ${safeName} | Spherehead.tech`,
+      replyTo: safeEmail, // Clicking 'Reply' will reply to the customer
+      subject: `New ${safeOption} Request from ${safeName} | Website Contact Form`,
       html: `
-        <h3>Contact Message</h3>
+        <h3>New Contact Form Submission</h3>
+        <p><strong>Type:</strong> ${safeOption}</p>
         <p><strong>Name:</strong> ${safeName}</p>
         <p><strong>Email:</strong> ${safeEmail}</p>
-        <p><strong>Phone:</strong> ${safePhone}</p>
-        <p><strong>Message:</strong> ${safeMessage}</p>
+        <p><strong>Phone:</strong> ${safePhone || 'Not provided'}</p>
+        <p><strong>Area of Interest:</strong> ${safeAreaOfInterest || 'Not specified'}</p>
+        <p><strong>Idea / Message:</strong></p>
+        <p>${safeMessage}</p>
+        <p><small>User confirmed that details are accurate.</small></p>
       `,
     });
 
@@ -79,17 +85,17 @@ export default async function handler(
     await transporter.sendMail({
       from: `"Spherehead Technologies" <${emailUser}>`,
       to: safeEmail, // send confirmation to user
-      subject: "We received your message",
+      subject: "We received your request",
       html: `
         <p>Hi ${safeName},</p>
 
-        <p>Thank you for reaching out to Spherehead Technologies.</p>
+        <p>Thank you for reaching out to us regarding a ${safeOption.toLowerCase()}.</p>
 
-        <p>We’ve received your message and our team will get back to you shortly.</p>
+        <p>We’ve received your details and our team will get back to you shortly.</p>
 
         <br/>
 
-        <p>Best regards,<br/>Spherehead Team</p>
+        <p>Best regards,<br/>The Team</p>
       `,
     });
 

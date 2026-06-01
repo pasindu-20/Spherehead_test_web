@@ -16,9 +16,7 @@ export default function Footer() {
         <SiteContainer>
           {/* Heading */}
           <div className="text-white pt-12 pb-10">
-            <h1
-              className="heading-1"
-            >
+            <h1 className="heading-1">
               Let&apos;s Build
               <br />
               Something
