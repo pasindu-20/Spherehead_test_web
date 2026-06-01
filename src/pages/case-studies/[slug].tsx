@@ -151,6 +151,7 @@ export default function CaseStudyDetail() {
   const { slug } = router.query;
   const [activeSection, setActiveSection] = useState("overview");
   const [isExiting, setIsExiting] = useState(false);
+  const isMobile = useIsMobile();
 
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
@@ -698,7 +699,8 @@ export default function CaseStudyDetail() {
                 </div>
               </div>
             </motion.section>
-          </motion.div>
+          </div>
+        )}
       </main>
       <Footer />
     </>
