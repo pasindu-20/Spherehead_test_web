@@ -7,6 +7,7 @@ import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 import Footer from "@/components/layout/footer";
 import RotatingDots from "@/components/ui/rotating-dots";
+import GradientButton from "@/components/ui/gradient-button";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -266,22 +267,13 @@ export default function CaseStudyDetail() {
                   />
 
                   <div className="hidden lg:block absolute bottom-0 right-0 bg-white pt-6 pl-8 pr-6 rounded-tl-[0.50rem] z-20 border-0 shadow-none outline-none ring-0">
-                    <Link
+                    <GradientButton
                       href="/contact-us"
-                      className="group relative inline-flex h-[44px] items-center justify-center overflow-hidden rounded-sm bg-animated-gradient px-6 !text-white transition duration-300"
+                      animated
+                      className="!text-white"
                     >
-                      <span className="invisible body-medium whitespace-nowrap">
-                        Contact Us
-                      </span>
-                      <div className="absolute top-0 left-0 flex w-full flex-col transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-1/2">
-                        <span className="flex h-[44px] w-full items-center justify-center body-medium whitespace-nowrap">
-                          Contact Us
-                        </span>
-                        <span className="flex h-[44px] w-full items-center justify-center body-medium whitespace-nowrap">
-                          Contact Us
-                        </span>
-                      </div>
-                    </Link>
+                      Contact Us
+                    </GradientButton>
                   </div>
                 </div>
               </section>
@@ -539,22 +531,13 @@ export default function CaseStudyDetail() {
                   />
 
                   <div className="hidden lg:block absolute bottom-0 right-0 bg-white pt-6 pl-8 pr-6 rounded-tl-[0.50rem] z-20 border-0 shadow-none outline-none ring-0">
-                    <Link
+                    <GradientButton
                       href="/contact-us"
-                      className="group relative inline-flex h-[44px] items-center justify-center overflow-hidden rounded-sm bg-animated-gradient px-6 !text-white transition duration-300"
+                      animated
+                      className="!text-white"
                     >
-                      <span className="invisible body-medium whitespace-nowrap">
-                        Contact Us
-                      </span>
-                      <div className="absolute top-0 left-0 flex w-full flex-col transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-1/2">
-                        <span className="flex h-[44px] w-full items-center justify-center body-medium whitespace-nowrap">
-                          Contact Us
-                        </span>
-                        <span className="flex h-[44px] w-full items-center justify-center body-medium whitespace-nowrap">
-                          Contact Us
-                        </span>
-                      </div>
-                    </Link>
+                      Contact Us
+                    </GradientButton>
                   </div>
                 </motion.div>
               </section>
