@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import CyclicButton from "@/components/ui/cyclic-button";
 import SiteContainer from "../layout/site-container";
 
@@ -17,7 +16,9 @@ export default function IndustriesHero() {
             </h1>
             <div className="mt-6">
               <CyclicButton
-                onClick={() => console.log("Start Project Clicked!")}
+                onClick={() => {
+                  window.location.href = "/pricing#contact-pricing";
+                }}
               >
                 Start A Project
               </CyclicButton>

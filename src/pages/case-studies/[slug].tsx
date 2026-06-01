@@ -153,6 +153,7 @@ export default function CaseStudyDetail() {
   const router = useRouter();
   const { slug } = router.query;
   const [activeSection, setActiveSection] = useState("overview");
+  const [isExiting, setIsExiting] = useState(false);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
@@ -208,9 +209,7 @@ export default function CaseStudyDetail() {
   if (!study) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <h1 className="text-3xl font-bold text-[#0A2F76]">
-          Case Study Not Found
-        </h1>
+        <h1 className="heading-2 text-[#0A2F76]">Case Study Not Found</h1>
         <Link href="/case-studies" className="text-[#0D54CA] hover:underline">
           Return to Case Studies
         </Link>
@@ -517,12 +516,11 @@ function SidebarLink({
     <a
       href={href}
       // CHANGED: Removed -ml-[2px]
-      className={`body-medium py-3 pl-6 border-l-2 transition-colors duration-300 leading-tight ${
-        isActive
+      className={`body-medium py-3 pl-6 border-l-2 transition-colors duration-300 leading-tight ${isActive
           ? "border-[#0D54CA] !text-[#0D54CA] font-medium"
           : // CHANGED: Replaced border-transparent with border-gray-200 (and fixed text-gray-500)
-            "border-gray-200 text-gray-500 hover:text-gray-900"
-      }`}
+          "border-gray-200 text-gray-500 hover:text-gray-900"
+        }`}
     >
       {label}
     </a>
