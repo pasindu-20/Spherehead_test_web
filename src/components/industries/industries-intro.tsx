@@ -10,8 +10,6 @@ import {
 
 import RotatingDots from "@/components/ui/rotating-dots";
 import SiteContainer from "../layout/site-container";
-import { useIsMobile } from "@/hooks/use-is-mobile";
-
 function IndustriesIntroMobile() {
   return (
     <section className="relative z-20 w-full bg-white pt-16 pb-10">
@@ -142,11 +140,14 @@ function IndustriesIntroDesktop() {
 }
 
 export default function IndustriesIntro() {
-  const isMobile = useIsMobile();
-
-  if (isMobile) {
-    return <IndustriesIntroMobile />;
-  }
-
-  return <IndustriesIntroDesktop />;
+  return (
+    <>
+      <div className="lg:hidden">
+        <IndustriesIntroMobile />
+      </div>
+      <div className="hidden lg:block">
+        <IndustriesIntroDesktop />
+      </div>
+    </>
+  );
 }
