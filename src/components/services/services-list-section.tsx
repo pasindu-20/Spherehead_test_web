@@ -95,13 +95,6 @@ export default function ServicesListSection({
       return rect.top <= 80 && rect.bottom > 0;
     };
 
-    // Detect when user scrolls up and the section bottom enters the viewport from below
-    const isSectionJustBelow = () => {
-      const rect = section.getBoundingClientRect();
-      // Section bottom is near or just below viewport bottom (entering from below while scrolling up)
-      return rect.bottom >= window.innerHeight - 5 && rect.top < window.innerHeight && rect.top > 80;
-    };
-
     const handleWheel = (e: WheelEvent) => {
       if (Date.now() < lockedUntil) {
         e.preventDefault();
@@ -130,52 +123,6 @@ export default function ServicesListSection({
         e.stopPropagation();
         if (e.deltaY < 0 && listRef.current) {
           listRef.current.scrollTop += e.deltaY;
-        }
-        return;
-      }
-
-      if (!isStickyEngaged()) {
-        // Check if scrolling UP and section is just below viewport — snap to it
-        const isUp = e.deltaY < 0;
-        if (isUp && isSectionJustBelow() && !isSnapping) {
-          e.preventDefault();
-          e.stopPropagation();
-          isSnapping = true;
-
-          // Snap page so section top aligns with viewport top
-          const sectionRect = section.getBoundingClientRect();
-          const targetY = window.scrollY + sectionRect.top;
-          const startY = window.scrollY;
-          const distance = targetY - startY;
-          const t0 = performance.now();
-
-          // Set list scroll to bottom before snapping
-          if (listRef.current) {
-            listRef.current.scrollTop = listRef.current.scrollHeight - listRef.current.clientHeight;
-          }
-
-          lockedFromBelow = true;
-          setTimeout(() => {
-            lockedFromBelow = false;
-            softLandFromBelowUntil = Date.now() + 2000;
-          }, 1200);
-
-          const step = (ts: number) => {
-            const elapsed = ts - t0;
-            const t = Math.min(elapsed / 400, 1);
-            const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-            window.scrollTo({
-              top: Math.round(startY + distance * ease),
-              behavior: "instant" as ScrollBehavior,
-            });
-            if (t < 1) {
-              requestAnimationFrame(step);
-            } else {
-              isSnapping = false;
-            }
-          };
-          requestAnimationFrame(step);
-          return;
         }
         return;
       }

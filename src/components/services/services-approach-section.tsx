@@ -53,7 +53,7 @@ export default function ServicesApproachSection() {
 
     // Reset page to 0 whenever the section comes into view
     let enteredAt = 0;
-    const ENTRY_COOLDOWN_MS = 1000; // absorb trackpad momentum when entering from intro
+    const ENTRY_COOLDOWN_MS = 400; // absorb trackpad momentum when entering from intro
     let lockedUntil = 0; // Hard lock for snap-back from list section
 
     // Global wheel blocker during snap-back lock period
@@ -119,7 +119,7 @@ export default function ServicesApproachSection() {
     );
     visibilityObserver.observe(section);
 
-    const ACCUMULATOR_THRESHOLD = 120;
+    const ACCUMULATOR_THRESHOLD = 50;
 
     let lastEventTime = 0;
     let lastUpEventTime = 0;
@@ -133,7 +133,7 @@ export default function ServicesApproachSection() {
     const DOWN_ACCUMULATOR_THRESHOLD = 80; // Minimum accumulated delta for page transition
     let pageTransitionAt = 0; // When the last page 0→1 transition happened
     let upPageTransitionAt = 0; // When the last page 1→0 transition happened
-    const PAGE_TRANSITION_COOLDOWN_MS = 1200; // Cooldown after page transitions before allowing further navigation
+    const PAGE_TRANSITION_COOLDOWN_MS = 500; // Cooldown after page transitions before allowing further navigation
     const isTouchpad = () => consecutiveSmallDeltas > 3;
 
     // Upward exit state
@@ -209,7 +209,7 @@ export default function ServicesApproachSection() {
         upEventCount = 0;
 
         // Decay downward accumulator if there's been a gap (momentum dying down)
-        if (now - lastDownEventTime > 300) {
+        if (now - lastDownEventTime > 500) {
           downAccumulator = 0;
           downEventCount = 0;
         }
@@ -277,7 +277,7 @@ export default function ServicesApproachSection() {
           }
 
           // Decay accumulator if there's been a gap (momentum dying down)
-          if (now - lastUpEventTime > 250) {
+          if (now - lastUpEventTime > 500) {
             upExitAccumulator = 0;
             upEventCount = 0;
           }
@@ -313,7 +313,7 @@ export default function ServicesApproachSection() {
           return;
         }
         // Decay accumulator if there's been a gap (momentum dying down)
-        if (now - lastUpEventTime > 250) {
+        if (now - lastUpEventTime > 500) {
           upExitAccumulator = 0;
           upEventCount = 0;
         }
@@ -329,12 +329,12 @@ export default function ServicesApproachSection() {
         upExitAccumulator = 0;
         upEventCount = 0;
         const introSection = document.querySelector<HTMLElement>("[data-hide-navbar]");
-        if (introSection) {
-          const targetY = introSection.offsetTop;
-          // Notify intro section that a snap is incoming so it absorbs touchpad momentum
-          window.dispatchEvent(new CustomEvent("approach-snap-to-intro"));
-          animateScrollTo(targetY, 500);
-        }
+if (introSection) {
+  const targetY = introSection.getBoundingClientRect().top + window.scrollY;
+  // Notify intro section that a snap is incoming so it absorbs touchpad momentum
+  window.dispatchEvent(new CustomEvent("approach-snap-to-intro"));
+  animateScrollTo(targetY, 500);
+}
       }
     };
 

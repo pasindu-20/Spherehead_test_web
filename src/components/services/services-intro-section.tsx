@@ -150,7 +150,7 @@ function ServicesIntroDesktop({
     let accumulator = 0;
     let eventCount = 0;
     let lastDirection: "up" | "down" | null = null;
-    const ACCUMULATOR_THRESHOLD = 120;
+    const ACCUMULATOR_THRESHOLD = 50;
     const EVENT_COUNT_THRESHOLD = 10;
     const INTENT_GAP_MS = 400;
     let atIntroSince = 0;
