@@ -20,7 +20,7 @@ export default function TechnologiesSection() {
         </h2>
       </div>
 
-      <div className="w-full box-border px-10 lg:px-36">
+      <div className="w-full box-border px-6 lg:px-36">
         <TechStackCarousel />
       </div>
     </section>

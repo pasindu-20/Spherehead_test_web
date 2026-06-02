@@ -10,7 +10,7 @@ export default function StayConnected() {
       {/* THE FIX: Solid white bar to restore the white gap above the blue section! */}
       <div className="hidden lg:block w-full h-32 bg-white shrink-0 rounded-b-md" />
 
-      <div className="w-full pt-8 lg:pt-16 pb-16 lg:py-24 flex justify-center items-center px-4 md:px-8">
+      <div className="w-full pt-8 lg:pt-16 pb-16 lg:py-24 flex justify-center items-center px-6 md:px-8">
 
         <motion.div
           initial={{ scale: 0.98, opacity: 0 }}
