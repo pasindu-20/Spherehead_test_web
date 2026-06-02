@@ -194,7 +194,7 @@ export default function LandingAboutSection({
         }}
         className="absolute bottom-0 left-0 z-[3] overflow-hidden"
       >
-        <div className="flex h-full items-center px-4 lg:px-8 xl:px-16 xl:pl-24 w-full">
+        <div className="flex h-full items-center px-6 lg:px-8 xl:px-16 xl:pl-24 w-full">
           <div className="flex w-full max-w-[912px] items-start justify-between xl:justify-start gap-2 lg:gap-4 xl:gap-12">
             {statsData.map((stat) => (
               <div key={stat.id} className="flex flex-col items-center text-center xl:items-start xl:text-left flex-1 xl:flex-none">

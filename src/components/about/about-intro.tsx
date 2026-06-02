@@ -32,7 +32,7 @@ export default function AboutIntro() {
       </SiteContainer>
 
       {/* MAP CONTENT - Full width on mobile, standard margins on desktop */}
-      <div className="mx-auto w-full max-w-[1440px] lg:px-10 xl:px-4">
+      <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
         <div className="relative w-full flex justify-center -mb-10 mt-8 lg:-mb-40 lg:mt-0">
           <img
             src="https://res.cloudinary.com/dku9in8sb/image/upload/v1776759937/About-Us-World-Map_whcynj.webp"

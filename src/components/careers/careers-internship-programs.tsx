@@ -68,7 +68,7 @@ export default function InternshipPrograms() {
           </motion.div>
 
           {/* 2x2 steps grid */}
-          <div className="w-full lg:w-[60%] grid grid-cols-2">
+          <div className="w-full lg:w-[60%] grid grid-cols-2 relative">
             {steps.map((step, idx) => (
               <motion.div
                 key={idx}
@@ -92,6 +92,9 @@ export default function InternshipPrograms() {
                 <p className="body-small !text-[#55565C] hidden lg:block">{step.desc}</p>
               </motion.div>
             ))}
+
+            {/* Center mask to hide the intersecting lines as requested */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-3/4 lg:w-[10%] h-20 lg:h-14 pointer-events-none" />
           </div>
         </div>
       </SiteContainer>

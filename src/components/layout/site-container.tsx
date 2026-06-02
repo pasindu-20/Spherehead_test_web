@@ -12,7 +12,7 @@ export default function SiteContainer({
     return (
         <div
             className={cn(
-                "mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-4",
+                "mx-auto w-full max-w-[1440px] px-6 md:px-8 lg:px-10",
                 className,
             )}
         >
