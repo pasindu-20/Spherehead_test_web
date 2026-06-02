@@ -271,7 +271,7 @@ export default function ServicesListSection({
                           repeat: Infinity,
                           ease: "easeInOut",
                         }}
-                        className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[70%] h-[20px] bg-black blur-[8px] rounded-[50%] z-0"
+                        className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[70%] h-[20px] bg-black blur-[8px] rounded-[50%] z-0"
                       />
 
                       {/* Transition Presence for Swapping Images */}

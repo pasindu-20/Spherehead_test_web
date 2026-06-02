@@ -46,7 +46,7 @@ function ServicesIntroMobile({ data }: { data: ServiceCategoryData["intro"] }) {
           <motion.div
             animate={{ scale: [1, 0.8, 1], opacity: [0.2, 0.05, 0.2] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[70%] h-[8px] bg-black blur-[6px] rounded-[50%] z-0"
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-[8px] bg-black blur-[6px] rounded-[50%] z-0"
           />
 
           <motion.div
@@ -511,7 +511,7 @@ function ServicesIntroDesktop({
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[70%] h-[8px] bg-black blur-[8px] rounded-[50%] z-0"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-[8px] bg-black blur-[8px] rounded-[50%] z-0"
               />
 
               <motion.div
