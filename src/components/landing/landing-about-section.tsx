@@ -49,9 +49,7 @@ export default function LandingAboutSection({
     return (
       <section className="relative z-20 flex w-full flex-col">
         <div className="flex flex-col items-center bg-white px-6 pb-12 pt-8 text-center">
-          <div className="mb-8 scale-[1.3]">
-          </div>
-          {/* Applied heading-2 here */}
+          <div className="mb-8 scale-[1.3]"></div>
           <h2 className="heading-2 mb-6 max-w-[400px] !text-[#01030B] !text-center">
             <span className="text-[#0D54CA]">Spherehead Technologies</span> is a{" "}
             <span className="text-[#0D54CA]">USA established</span> technology
@@ -104,9 +102,7 @@ export default function LandingAboutSection({
                 <span className="heading-1 mb-3 !leading-none text-white !tracking-none">
                   {stat.value}
                 </span>
-                <span className="body-small text-white">
-                  {stat.label}
-                </span>
+                <span className="body-small text-white">{stat.label}</span>
               </div>
             ))}
           </div>
@@ -194,20 +190,20 @@ export default function LandingAboutSection({
         }}
         className="absolute bottom-0 left-0 z-[3] overflow-hidden"
       >
-        <div className="flex h-full items-center px-6 lg:px-8 xl:px-16 xl:pl-24 w-full">
-          <div className="flex w-full max-w-[912px] items-start justify-between xl:justify-start gap-2 lg:gap-4 xl:gap-12">
+        <div className="flex h-full items-center px-4 lg:px-8 xl:px-16 xl:pl-24 w-full">
+          <div className="flex w-full items-start justify-between gap-2 lg:gap-6">
             {statsData.map((stat) => (
-              <div key={stat.id} className="flex flex-col items-center text-center xl:items-start xl:text-left flex-1 xl:flex-none">
-                {/* Replaced the messy Tailwind classes with your custom CSS class */}
-                <span className="about-stat-number">
-                  {stat.value}
-                </span>
+
+              <div
+                key={stat.id}
+                className="flex flex-col items-center text-center xl:items-start xl:text-left flex-1"
+              >
+                <span className="about-stat-number">{stat.value}</span>
                 <span className="body-small !text-[#e8e8e8] mt-2 xl:mt-3 leading-snug tracking-normal xl:tracking-[1.2px] xl:whitespace-nowrap">
                   {stat.label}
                 </span>
               </div>
             ))}
-
           </div>
         </div>
       </motion.div>

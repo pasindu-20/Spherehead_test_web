@@ -53,7 +53,7 @@ export default function ServicesApproachSection() {
 
     // Reset page to 0 whenever the section comes into view
     let enteredAt = 0;
-    const ENTRY_COOLDOWN_MS = 1000; // absorb trackpad momentum when entering from intro
+    const ENTRY_COOLDOWN_MS = 400; // absorb trackpad momentum when entering from intro
     let lockedUntil = 0; // Hard lock for snap-back from list section
 
     // Global wheel blocker during snap-back lock period
@@ -78,10 +78,15 @@ export default function ServicesApproachSection() {
       snappedFromListUntil = Date.now() + 1200;
       setPage(1);
       // Add global blocker to catch momentum events at window level
-      window.addEventListener("wheel", globalWheelBlocker, { passive: false, capture: true });
+      window.addEventListener("wheel", globalWheelBlocker, {
+        passive: false,
+        capture: true,
+      });
       // Remove it after the lock period
       setTimeout(() => {
-        window.removeEventListener("wheel", globalWheelBlocker, { capture: true });
+        window.removeEventListener("wheel", globalWheelBlocker, {
+          capture: true,
+        });
       }, 1200);
     };
     window.addEventListener("list-snap-to-approach", handleSnapBack);
@@ -91,9 +96,14 @@ export default function ServicesApproachSection() {
       // Block wheel events for 1200ms (600ms animation + 600ms momentum)
       lockedUntil = Date.now() + 1200;
       // Add global blocker
-      window.addEventListener("wheel", globalWheelBlocker, { passive: false, capture: true });
+      window.addEventListener("wheel", globalWheelBlocker, {
+        passive: false,
+        capture: true,
+      });
       setTimeout(() => {
-        window.removeEventListener("wheel", globalWheelBlocker, { capture: true });
+        window.removeEventListener("wheel", globalWheelBlocker, {
+          capture: true,
+        });
       }, 1200);
     };
     window.addEventListener("intro-snap-to-approach", handleSnapFromIntro);
@@ -115,11 +125,11 @@ export default function ServicesApproachSection() {
           upExitAccumulator = 0;
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     visibilityObserver.observe(section);
 
-    const ACCUMULATOR_THRESHOLD = 120;
+    const ACCUMULATOR_THRESHOLD = 50;
 
     let lastEventTime = 0;
     let lastUpEventTime = 0;
@@ -133,13 +143,17 @@ export default function ServicesApproachSection() {
     const DOWN_ACCUMULATOR_THRESHOLD = 80; // Minimum accumulated delta for page transition
     let pageTransitionAt = 0; // When the last page 0→1 transition happened
     let upPageTransitionAt = 0; // When the last page 1→0 transition happened
-    const PAGE_TRANSITION_COOLDOWN_MS = 1200; // Cooldown after page transitions before allowing further navigation
+    const PAGE_TRANSITION_COOLDOWN_MS = 500; // Cooldown after page transitions before allowing further navigation
     const isTouchpad = () => consecutiveSmallDeltas > 3;
 
     // Upward exit state
     let upExitAccumulator = 0;
 
-    const animateScrollTo = (targetY: number, duration: number, cb?: () => void) => {
+    const animateScrollTo = (
+      targetY: number,
+      duration: number,
+      cb?: () => void,
+    ) => {
       isAnimating.current = true;
       const startY = window.scrollY;
       const distance = targetY - startY;
@@ -209,7 +223,7 @@ export default function ServicesApproachSection() {
         upEventCount = 0;
 
         // Decay downward accumulator if there's been a gap (momentum dying down)
-        if (now - lastDownEventTime > 300) {
+        if (now - lastDownEventTime > 500) {
           downAccumulator = 0;
           downEventCount = 0;
         }
@@ -220,16 +234,22 @@ export default function ServicesApproachSection() {
         if (pageRef.current === 0) {
           // Slide to page 1 — require both event count AND accumulated delta for strong intent
           e.preventDefault();
-          const hasDownIntent = (downEventCount >= DOWN_EVENT_COUNT_THRESHOLD && downAccumulator >= DOWN_ACCUMULATOR_THRESHOLD) || Math.abs(e.deltaY) > 50;
+          const hasDownIntent =
+            (downEventCount >= DOWN_EVENT_COUNT_THRESHOLD &&
+              downAccumulator >= DOWN_ACCUMULATOR_THRESHOLD) ||
+            Math.abs(e.deltaY) > 50;
           if (hasDownIntent) {
             downEventCount = 0;
             downAccumulator = 0;
             setPage(1);
             pageTransitionAt = Date.now();
             isAnimating.current = true;
-            setTimeout(() => {
-              isAnimating.current = false;
-            }, isTouchpad() ? 1400 : 800);
+            setTimeout(
+              () => {
+                isAnimating.current = false;
+              },
+              isTouchpad() ? 1400 : 800,
+            );
           }
           return;
         }
@@ -243,7 +263,10 @@ export default function ServicesApproachSection() {
           return;
         }
         // Require intent to scroll past page 1 as well
-        const hasExitIntent = (downEventCount >= DOWN_EVENT_COUNT_THRESHOLD && downAccumulator >= DOWN_ACCUMULATOR_THRESHOLD) || Math.abs(e.deltaY) > 50;
+        const hasExitIntent =
+          (downEventCount >= DOWN_EVENT_COUNT_THRESHOLD &&
+            downAccumulator >= DOWN_ACCUMULATOR_THRESHOLD) ||
+          Math.abs(e.deltaY) > 50;
         if (!hasExitIntent) {
           return;
         }
@@ -251,7 +274,8 @@ export default function ServicesApproachSection() {
         downAccumulator = 0;
         const listSection = section.nextElementSibling as HTMLElement;
         if (listSection) {
-          const targetY = listSection.getBoundingClientRect().top + window.scrollY;
+          const targetY =
+            listSection.getBoundingClientRect().top + window.scrollY;
           isAnimating.current = true;
           // Notify list section that a snap is incoming so it ignores momentum
           window.dispatchEvent(new CustomEvent("approach-snap-to-list"));
@@ -277,7 +301,7 @@ export default function ServicesApproachSection() {
           }
 
           // Decay accumulator if there's been a gap (momentum dying down)
-          if (now - lastUpEventTime > 250) {
+          if (now - lastUpEventTime > 500) {
             upExitAccumulator = 0;
             upEventCount = 0;
           }
@@ -285,7 +309,10 @@ export default function ServicesApproachSection() {
           upExitAccumulator += Math.abs(e.deltaY);
           upEventCount += 1;
 
-          const hasUpIntent = (upEventCount >= UP_EVENT_COUNT_THRESHOLD && upExitAccumulator >= ACCUMULATOR_THRESHOLD) || Math.abs(e.deltaY) > 50;
+          const hasUpIntent =
+            (upEventCount >= UP_EVENT_COUNT_THRESHOLD &&
+              upExitAccumulator >= ACCUMULATOR_THRESHOLD) ||
+            Math.abs(e.deltaY) > 50;
           if (!hasUpIntent) {
             return;
           }
@@ -294,11 +321,14 @@ export default function ServicesApproachSection() {
           setPage(0);
           upPageTransitionAt = Date.now();
           isAnimating.current = true;
-          setTimeout(() => {
-            isAnimating.current = false;
-            upExitAccumulator = 0;
-            upEventCount = 0;
-          }, isTouchpad() ? 1400 : 800);
+          setTimeout(
+            () => {
+              isAnimating.current = false;
+              upExitAccumulator = 0;
+              upEventCount = 0;
+            },
+            isTouchpad() ? 1400 : 800,
+          );
           return;
         }
 
@@ -313,7 +343,7 @@ export default function ServicesApproachSection() {
           return;
         }
         // Decay accumulator if there's been a gap (momentum dying down)
-        if (now - lastUpEventTime > 250) {
+        if (now - lastUpEventTime > 500) {
           upExitAccumulator = 0;
           upEventCount = 0;
         }
@@ -322,15 +352,19 @@ export default function ServicesApproachSection() {
         upEventCount += 1;
 
         // Intent detected via delta accumulation OR event count (Safari trackpad fallback)
-        const hasUpIntent = upExitAccumulator >= ACCUMULATOR_THRESHOLD || upEventCount >= UP_EVENT_COUNT_THRESHOLD;
+        const hasUpIntent =
+          upExitAccumulator >= ACCUMULATOR_THRESHOLD ||
+          upEventCount >= UP_EVENT_COUNT_THRESHOLD;
         if (!hasUpIntent) {
           return;
         }
         upExitAccumulator = 0;
         upEventCount = 0;
-        const introSection = document.querySelector<HTMLElement>("[data-hide-navbar]");
+        const introSection =
+          document.querySelector<HTMLElement>("[data-hide-navbar]");
         if (introSection) {
-          const targetY = introSection.offsetTop;
+          const targetY =
+            introSection.getBoundingClientRect().top + window.scrollY;
           // Notify intro section that a snap is incoming so it absorbs touchpad momentum
           window.dispatchEvent(new CustomEvent("approach-snap-to-intro"));
           animateScrollTo(targetY, 500);
@@ -343,7 +377,9 @@ export default function ServicesApproachSection() {
       section.removeEventListener("wheel", handleWheel);
       window.removeEventListener("list-snap-to-approach", handleSnapBack);
       window.removeEventListener("intro-snap-to-approach", handleSnapFromIntro);
-      window.removeEventListener("wheel", globalWheelBlocker, { capture: true });
+      window.removeEventListener("wheel", globalWheelBlocker, {
+        capture: true,
+      });
       visibilityObserver.disconnect();
     };
   }, [isMobile]);
@@ -354,12 +390,13 @@ export default function ServicesApproachSection() {
   const renderCard = (item: (typeof approaches)[0], idx: number) => (
     <div
       key={item.num}
-      className={`flex flex-col gap-1 py-12 ${idx === 0
-        ? "md:pr-8 lg:pr-12 md:border-r border-white/20"
-        : idx === 1
-          ? "md:px-8 lg:px-12 md:border-r border-white/20"
-          : "md:pl-8 lg:pl-12"
-        }`}
+      className={`flex flex-col gap-1 py-12 ${
+        idx === 0
+          ? "md:pr-8 lg:pr-12 md:border-r border-white/20"
+          : idx === 1
+            ? "md:px-8 lg:px-12 md:border-r border-white/20"
+            : "md:pl-8 lg:pl-12"
+      }`}
     >
       <span
         className="text-[48px] lg:text-[64px] font-light text-white leading-none mb-3"
@@ -393,7 +430,10 @@ export default function ServicesApproachSection() {
           </div>
           <div className="grid grid-cols-2 gap-x-6 gap-y-14 px-2">
             {approaches.map((item) => (
-              <div key={item.num} className="flex flex-col items-center text-center gap-3">
+              <div
+                key={item.num}
+                className="flex flex-col items-center text-center gap-3"
+              >
                 <span
                   className="text-[48px] font-light text-white leading-none pb-1"
                   style={{ fontFamily: "var(--font-archivo)" }}
