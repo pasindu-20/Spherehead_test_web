@@ -24,10 +24,10 @@ body {
   margin: 0;
   background: linear-gradient(
     90deg,
-    #2666D2 0%,
-    #184AA3 15%,
+    #06142E 0%,
     #0A2F76 50%,
-    #06142E 100%
+    #184AA3 85%,
+    #2666D2 100%
   );
   background-size: 200% 200%;
   animation: animated-gradient-flow 10s cubic-bezier(0.4, 0, 0.2, 1)
@@ -55,15 +55,15 @@ select {
 /* Background Animation Keyframes */
 @keyframes animated-gradient-flow {
   0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
     background-position: 100% 50%;
   }
 
-  100% {
+  50% {
     background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
   }
 }
 
@@ -78,10 +78,10 @@ select {
 .bg-animated-gradient {
   background: linear-gradient(
     90deg,
-    #2666D2 0%,
-    #184AA3 15%,
+    #06142E 0%,
     #0A2F76 50%,
-    #06142E 100%
+    #184AA3 85%,
+    #2666D2 100%
   );
   background-size: 200% 200%;
   animation: animated-gradient-flow 10s cubic-bezier(0.4, 0, 0.2, 1)
