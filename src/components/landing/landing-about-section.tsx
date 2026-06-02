@@ -191,9 +191,6 @@ export default function LandingAboutSection({
         className="absolute bottom-0 left-0 z-[3] overflow-hidden"
       >
         <div className="flex h-full items-center px-4 lg:px-8 xl:px-16 xl:pl-24 w-full">
-          {/* FIX: Removed `max-w-[912px]`, `xl:justify-start`, and rigid gap classes. 
-            Used simple `justify-between` and balanced gaps so elements dynamically share space.
-          */}
           <div className="flex w-full items-start justify-between gap-2 lg:gap-6">
             {statsData.map((stat) => (
 

@@ -10,14 +10,7 @@ export default function CaseStudiesHero() {
     // 1. Changed justify-start to justify-end so the space is pushed to the top
     <section className="relative h-full flex flex-col justify-end overflow-hidden pt-32 pb-24 lg:pt-0 lg:pb-56 border-none">
       <SiteContainer className="relative z-10 flex flex-col">
-        
-        {/* 3. Added the horizontal bar above the content */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full h-[1px] bg-white/30 mb-8 lg:mb-12 origin-left"
-        />
+
 
         {/* Changed items-start back to items-end to keep grid content anchored to bottom */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">

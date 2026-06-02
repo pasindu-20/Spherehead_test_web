@@ -7,7 +7,7 @@ import RotatingDots from "@/components/ui/rotating-dots";
 
 export default function ContactIntro() {
   return (
-    <section className="w-full bg-white pt-12 lg:pt-16 pb-8 lg:pb-12 snap-start">
+    <section className="w-full bg-white rounded-t-md lg:rounded-t-md pt-12 lg:pt-16 pb-8 lg:pb-12 snap-start">
       <SiteContainer>
         {/* Adjusted gap to control the vertical space between Title and Paragraph */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">

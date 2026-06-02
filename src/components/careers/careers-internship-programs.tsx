@@ -31,7 +31,7 @@ const steps = [
 
 export default function InternshipPrograms() {
   return (
-    <section className="relative w-full flex flex-col snap-start bg-white rounded-md">
+    <section className="relative w-full flex flex-col snap-start bg-white rounded-md min-h-screen">
       {/* HEADER SECTION */}
       <SiteContainer className="pt-12 lg:pt-16 pb-8 lg:pb-10">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-4">
@@ -68,7 +68,7 @@ export default function InternshipPrograms() {
           </motion.div>
 
           {/* 2x2 steps grid */}
-          <div className="w-full lg:w-[60%] grid grid-cols-2">
+          <div className="w-full lg:w-[60%] grid grid-cols-2 relative">
             {steps.map((step, idx) => (
               <motion.div
                 key={idx}
@@ -80,9 +80,8 @@ export default function InternshipPrograms() {
                   delay: idx * 0.1,
                   ease: "easeOut",
                 }}
-                className={`flex flex-col gap-2 p-6 lg:p-8 ${
-                  idx % 2 === 0 ? "border-r border-gray-200" : ""
-                } ${idx < 2 ? "border-b border-gray-200" : ""}`}
+                className={`flex flex-col gap-2 p-6 lg:p-8 ${idx % 2 === 0 ? "border-r border-gray-200" : ""
+                  } ${idx < 2 ? "border-b border-gray-200" : ""}`}
               >
                 <span className="service-whitecard-number !m-0 !text-[36px] lg:!text-[40px]">
                   {step.num}
@@ -93,6 +92,9 @@ export default function InternshipPrograms() {
                 <p className="body-small !text-[#55565C] hidden lg:block">{step.desc}</p>
               </motion.div>
             ))}
+
+            {/* Center mask to hide the intersecting lines as requested */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-3/4 lg:w-[10%] h-20 lg:h-14 pointer-events-none" />
           </div>
         </div>
       </SiteContainer>
