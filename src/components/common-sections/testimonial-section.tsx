@@ -87,7 +87,7 @@ function MainCard({ card }: { card: Card }) {
   return (
     <div
       className="flex w-full flex-col gap-5 sm:flex-row sm:gap-0"
-      style={{ maxWidth: MAIN_CARD_W, minHeight: CARD_H }}
+      style={{ maxWidth: MAIN_CARD_W, minHeight: SIDE_CARD_H }}
     >
       <div className="shrink-0 relative" style={{ width: IMG_W }}>
         <div
