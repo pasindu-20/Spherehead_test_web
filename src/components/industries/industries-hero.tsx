@@ -2,6 +2,7 @@
 
 import CyclicButton from "@/components/ui/cyclic-button";
 import SiteContainer from "../layout/site-container";
+import { motion } from "motion/react";
 
 export default function IndustriesHero() {
   return (
