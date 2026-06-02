@@ -31,7 +31,7 @@ const steps = [
 
 export default function InternshipPrograms() {
   return (
-    <section className="relative w-full flex flex-col snap-start bg-white rounded-md">
+    <section className="relative w-full flex flex-col snap-start bg-white rounded-md min-h-screen">
       {/* HEADER SECTION */}
       <SiteContainer className="pt-12 lg:pt-16 pb-8 lg:pb-10">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-4">
@@ -80,9 +80,8 @@ export default function InternshipPrograms() {
                   delay: idx * 0.1,
                   ease: "easeOut",
                 }}
-                className={`flex flex-col gap-2 p-6 lg:p-8 ${
-                  idx % 2 === 0 ? "border-r border-gray-200" : ""
-                } ${idx < 2 ? "border-b border-gray-200" : ""}`}
+                className={`flex flex-col gap-2 p-6 lg:p-8 ${idx % 2 === 0 ? "border-r border-gray-200" : ""
+                  } ${idx < 2 ? "border-b border-gray-200" : ""}`}
               >
                 <span className="service-whitecard-number !m-0 !text-[36px] lg:!text-[40px]">
                   {step.num}
