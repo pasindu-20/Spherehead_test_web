@@ -305,7 +305,7 @@ select {
 
 .about-stat-number {
   font-family: var(--font-archivo), Arial, Helvetica, sans-serif;
-  font-size: clamp(72px, 12vw, 84px); /* Larger size */
+  font-size: clamp(32px, 5vw, 84px); /* Larger size */
   font-weight: 400;                   /* Bolder weight */
   line-height: 1;
   color: #ffffff;
