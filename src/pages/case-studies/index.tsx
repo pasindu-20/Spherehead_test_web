@@ -60,7 +60,7 @@ export default function CaseStudies() {
     // Robust scroll restoration for desktop
     if (savedScrollPos) {
       const parsedPos = parseInt(savedScrollPos, 10);
-      
+
       // 1. Attempt immediate restore
       scrollContainer.scrollTop = parsedPos;
 
@@ -81,7 +81,7 @@ export default function CaseStudies() {
 
     // Use a timeout to avoid saving an incorrect '0' position during the initial render/layout shift
     let scrollTimeout: NodeJS.Timeout;
-    
+
     const handleScroll = () => {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
@@ -110,19 +110,18 @@ export default function CaseStudies() {
       <main
         ref={scrollRef}
         // Mobile: No snap. Desktop: Snap mandatory.
-        className={`relative w-full overflow-x-hidden bg-transparent ${
-          isMobile
-            ? "h-auto min-h-screen overflow-y-visible snap-none"
-            : "h-screen overflow-y-auto snap-y snap-mandatory"
-        } ${isMobile ? "auto" : isSmooth ? "scroll-smooth" : "auto"}`}
+        className={`relative w-full overflow-x-hidden bg-transparent ${isMobile
+          ? "h-auto min-h-screen overflow-y-visible snap-none"
+          : "h-screen overflow-y-auto snap-y snap-mandatory"
+          } ${isMobile ? "auto" : isSmooth ? "scroll-smooth" : "auto"}`}
       >
         <div className={isMobile ? "relative w-full flex flex-col" : "relative w-full z-0"}>
-          
+
           {/* SCROLL ZONE 1: HERO BACKGROUND - Enforces 80svh on mobile */}
           <div
             className={
               isMobile
-                ? "relative w-full h-[80svh] z-0"
+                ? "relative w-full h-[95svh] z-0"
                 : "sticky top-0 left-0 w-full h-screen z-0 lg:snap-start"
             }
           >
@@ -131,11 +130,10 @@ export default function CaseStudies() {
 
           {/* SCROLL ZONE 2: THE CURTAIN CARD SLIDER */}
           <div
-            className={`relative z-10 w-full bg-white lg:rounded-b-xl overflow-hidden min-h-screen ${
-              isMobile
-                ? "rounded-t-[8px] rounded-b-[8px] -mt-16 pt-4" 
-                : "-mt-32 lg:-mt-48 lg:snap-start"
-            }`}
+            className={`relative z-10 w-full bg-white lg:rounded-b-xl overflow-hidden min-h-screen ${isMobile
+              ? "rounded-t-[8px] rounded-b-[8px] -mt-16 pt-4"
+              : "-mt-32 lg:-mt-48 lg:snap-start"
+              }`}
           >
             <section
               id="case-studies-slider"
