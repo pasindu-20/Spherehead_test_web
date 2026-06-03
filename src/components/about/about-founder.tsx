@@ -47,10 +47,10 @@ export default function FounderMessage() {
   return (
     <section
       ref={sectionRef}
-      className="flex w-full snap-start items-center overflow-visible rounded-b-xl bg-white py-14 pb-24 md:min-h-screen lg:h-screen lg:overflow-hidden lg:py-0 lg:pb-32"
+      className="flex w-full snap-start items-center overflow-visible rounded-b-xl bg-white py-14 pb-24 min-h-screen lg:overflow-hidden lg:py-0 lg:pb-32"
     >
       <SiteContainer>
-        <div className="flex w-full flex-col justify-between">
+        <div className="flex w-full flex-col justify-between pt-20">
           {/* TOP CONTENT */}
           <div className="max-w-[760px]">
             {/* LABEL */}
