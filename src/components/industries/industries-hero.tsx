@@ -1,10 +1,12 @@
 "use client";
 
+import { useRouter } from "next/router";
 import CyclicButton from "@/components/ui/cyclic-button";
 import SiteContainer from "../layout/site-container";
 import { motion } from "motion/react";
 
 export default function IndustriesHero() {
+  const router = useRouter();
   return (
     <>
       {/* MOBILE VIEW */}
@@ -18,7 +20,7 @@ export default function IndustriesHero() {
             <div className="mt-6">
               <CyclicButton
                 onClick={() => {
-                  window.location.href = "/pricing#contact-pricing";
+                  router.push("/pricing#contact-pricing");
                 }}
               >
                 Start A Project
@@ -60,7 +62,7 @@ export default function IndustriesHero() {
                 >
                   <CyclicButton
                     onClick={() => {
-                      window.location.href = "/pricing#contact-pricing";
+                      router.push("/pricing#contact-pricing");
                     }}
                   >
                     <span>Start a Project</span>

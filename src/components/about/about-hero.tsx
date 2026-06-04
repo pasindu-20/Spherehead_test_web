@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/router";
 import CyclicButton from "@/components/ui/cyclic-button";
 import SiteContainer from "../layout/site-container";
 import { useScrollContainerContext } from "@/context/ScrollContainerContext";
 
 export default function AboutHero() {
+  const router = useRouter();
   const { scrollContainerRef } = useScrollContainerContext();
   
   return (
@@ -59,7 +61,7 @@ export default function AboutHero() {
               <div className="mt-2 lg:mt-0 lg:pb-2">
                 <CyclicButton
                   onClick={() => {
-                    window.location.href = "/pricing#contact-pricing";
+                    router.push("/pricing#contact-pricing");
                   }}
                 >
                   <span>Start a Project</span>

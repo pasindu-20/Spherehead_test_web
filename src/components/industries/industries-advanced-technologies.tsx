@@ -111,7 +111,7 @@ export default function TechScrollSection() {
             {/* Heading */}
             <h2 className="heading-2 !text-[#01030B] max-w-[900px] mb-10">
               We use advanced technologies to{" "}
-              <span className="text-[#0D54CA]">deliver smart</span>,scalable
+              <span className="text-black">deliver smart</span>,scalable
               solutions for business growth.
             </h2>
 
