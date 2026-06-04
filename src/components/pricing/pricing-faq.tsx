@@ -96,15 +96,14 @@ export default function FAQSection() {
             </div>
 
             <h2 className="heading-2 max-w-[520px]">
-              Behind every question lies a commitment to clarity and
-              understanding. <br />
+              <span className="hidden lg:inline">Behind every question lies a commitment to clarity and
+                understanding. <br /></span>
               Every answer is crafted to guide you and build lasting trust.
             </h2>
           </div>
 
           {/* RIGHT SIDE */}
-          {/* REMOVED lg:h-[750px] so the box sizes itself dynamically based on screen space */}
-          <div className="flex flex-col justify-between rounded-sm bg-white p-8 md:p-10 lg:p-12 h-auto">
+          <div className="flex flex-col justify-between rounded-sm bg-white p-8 md:p-10 lg:px-12 lg:pb-20 lg:pt-6 h-[700px] md:h-[700px] lg:h-[700px] overflow-hidden">
             <div className="flex flex-col">
               {faqs.map((faq, index) => {
                 const isOpen = activeIndex === index;
@@ -134,9 +133,8 @@ export default function FAQSection() {
 
                     {/* CONTENT */}
                     <div
-                      className={`overflow-hidden transition-all duration-300 ${
-                        isOpen ? "max-h-[160px] pb-4" : "max-h-0"
-                      }`}
+                      className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[160px] pb-4" : "max-h-0"
+                        }`}
                     >
                       <p className="pr-6 body-small text-[#55565C]">
                         {faq.answer}
@@ -147,14 +145,14 @@ export default function FAQSection() {
               })}
             </div>
 
-           {/* CONTACT CTA */}
-            <div className="pt-6 flex flex-row-reverse items-center justify-between lg:block lg:pt-10">
+            {/* CONTACT CTA */}
+            <div className="pt-6 flex flex-row-reverse flex-wrap items-center justify-between gap-3 lg:flex-col lg:flex-nowrap lg:items-start">
               <p className="mb-0 body-small text-[#01030B] text-right lg:mb-3 lg:text-left">
                 My question Is not here.
               </p>
 
-              <div className="pt-4">
-                <GradientButton href="/contact-us" className="!text-white">
+              <div className="shrink-0">
+                <GradientButton href="/contact-us" className="!text-white whitespace-nowrap text-[clamp(12px,3.5vw,16px)] lg:text-base">
                   Contact Us
                 </GradientButton>
               </div>
