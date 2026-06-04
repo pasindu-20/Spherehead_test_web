@@ -74,7 +74,7 @@ export default function IndustriesList() {
                   className="w-[48vw] flex-shrink-0 flex flex-col"
                 >
                   {/* Number */}
-                  <span className="text-[20px] font-medium mb-2 bg-animated-gradient bg-clip-text text-transparent inline-block">
+                  <span className="text-[20px] font-medium mb-2 bg-gradient-to-r from-[#0A2F76] to-[#2666D2] bg-clip-text text-transparent inline-block">
                     {item.id}
                   </span>
 
@@ -128,7 +128,7 @@ export default function IndustriesList() {
             </div>
 
             {/* RIGHT PANEL */}
-            <div className="w-1/2 bg-white">
+            <div className="w-1/2 bg-white pb-12 rounded-b-md overflow-hidden">
               {data.map((item) => (
                 <div key={item.id} className="border-b border-[#E7EAF0]">
                   {/* NUMBER */}

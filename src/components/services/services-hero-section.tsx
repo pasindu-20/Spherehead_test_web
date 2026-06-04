@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import SiteContainer from "@/components/layout/site-container";
 import CyclicButton from "@/components/ui/cyclic-button";
@@ -6,6 +7,7 @@ import { ServiceCategoryData } from "@/data/service-categories";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 
 export default function ServicesHeroSection({ data }: { data: ServiceCategoryData["hero"] }) {
+  const router = useRouter();
   const isMobile = useIsMobile();
 
   if (isMobile) {
@@ -20,7 +22,7 @@ export default function ServicesHeroSection({ data }: { data: ServiceCategoryDat
             <div className="flex items-start justify-start mt-6">
               <CyclicButton
                 onClick={() => {
-                  window.location.href = "/pricing#contact-pricing";
+                  router.push("/pricing#contact-pricing");
                 }}
               >
                 <span>Start a Project</span>
@@ -67,9 +69,7 @@ export default function ServicesHeroSection({ data }: { data: ServiceCategoryDat
             >
               <CyclicButton
                 onClick={() => {
-                  document
-                    .getElementById("contact-pricing")
-                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  router.push("/pricing#contact-pricing");
                 }}
               >
                 <span className="body-medium">Start a Project</span>

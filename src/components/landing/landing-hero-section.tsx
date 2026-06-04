@@ -27,7 +27,7 @@ export default function LandingHeroSection({
         </div>
         <div className="mt-8 flex items-start justify-start">
           <CyclicButton className="-ml-1 scale-95 origin-left">
-            <Link href="/contact-us">
+            <Link href="/pricing#contact-pricing">
               <span className="body-large text-white">
                 Get a Free Consultation
               </span>
@@ -74,10 +74,8 @@ export default function LandingHeroSection({
               transition={{ delay: 0.5, duration: 0.6 }}
               className="flex items-center gap-4 text-white/90 hover:text-white transition mb-12 mt-12 lg:mt-28"
             >
-              <CyclicButton
-                onClick={() => console.log("Get Free Consultation clicked!")}
-              >
-                <Link href="/contact-us">
+              <CyclicButton>
+                <Link href="/pricing#contact-pricing">
                   <span className="body-large text-white inline-block whitespace-nowrap">
                     Get a Free Consultation
                   </span>

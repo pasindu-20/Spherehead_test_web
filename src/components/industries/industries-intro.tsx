@@ -100,6 +100,7 @@ function IndustriesIntroDesktop() {
             overflow-hidden
             bg-white
             origin-bottom
+            rounded-t-md
             shadow-[0_-20px_80px_rgba(0,0,0,0.16)]
           "
         >

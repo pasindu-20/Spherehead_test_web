@@ -1,10 +1,12 @@
 "use client";
 
+import { useRouter } from "next/router";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import SiteContainer from "@/components/layout/site-container";
 import CyclicButton from "@/components/ui/cyclic-button";
 
 export default function PricingHero() {
+  const router = useRouter();
   // If you aren't using this hook elsewhere in the component, 
   // you can safely remove it to improve performance.
   void useIsMobile(); 
@@ -36,7 +38,7 @@ export default function PricingHero() {
           <div className="mt-2 lg:mt-0 lg:pb-2">
             <CyclicButton
               onClick={() => {
-                window.location.href = "/pricing#contact-pricing";
+                router.push("/pricing#contact-pricing");
               }}
             >
               <span>Start a Project</span>
