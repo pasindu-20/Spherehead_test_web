@@ -17,7 +17,7 @@ const CASE_STUDY_DETAILS = [
     title: "Transforming E-Commerce: From Concept to 300% Growth",
     category: "E-commerce",
     heroImage:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777463708/agri_1_jdpgi6.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777463708/agri_1_jdpgi6.webp",
     overview:
       "Our client, a growing retail business, needed a comprehensive e-commerce platform to expand their online presence and increase sales. The existing system was outdated, slow, and couldn't handle the growing customer base.\nWe developed a modern, scalable e-commerce platform that transformed their business operations and significantly improved their online sales performance.",
     challenges: [
@@ -27,7 +27,7 @@ const CASE_STUDY_DETAILS = [
       "Mobile Responsiveness - The platform wasn't optimized for mobile devices, missing a significant portion of potential customers.",
     ],
     architectureImage:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777544551/fruits_4_va0qkf.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777544551/fruits_4_va0qkf.webp",
     solutionIntro:
       "We designed and implemented a comprehensive e-commerce solution that addressed all the identified challenges.",
     solutionPoints: [
@@ -59,7 +59,7 @@ const CASE_STUDY_DETAILS = [
     title: "Revolutionizing Patient Care Through Integrated Healthcare Systems",
     category: "Healthcare",
     heroImage:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777462586/medi_2_cnmr4x.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777462586/medi_2_cnmr4x.webp",
     overview:
       "A leading healthcare provider approached us to modernize their patient management system. They needed a comprehensive solution to streamline operations, improve patient care, and ensure compliance with healthcare regulations.\n\nWe developed an integrated healthcare platform that connected all aspects of patient care, from appointment scheduling to medical records and billing.",
     challenges: [
@@ -69,7 +69,7 @@ const CASE_STUDY_DETAILS = [
       "Data Security Concerns - Protecting sensitive patient data while meeting HIPAA requirements.",
     ],
     architectureImage:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777544551/fruits_4_va0qkf.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777544551/fruits_4_va0qkf.webp",
     solutionIntro:
       "We designed and implemented a comprehensive healthcare solution that addressed all the identified challenges.",
     solutionPoints: [
@@ -100,7 +100,7 @@ const CASE_STUDY_DETAILS = [
     title: "Transforming Factory Operations Through IoT and Analytics",
     category: "Supply Chain",
     heroImage:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777462587/fac_operations_3_k9enyp.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777462587/fac_operations_3_k9enyp.webp",
     overview:
       "A leading manufacturing company approached us to transform their factory operations through IoT and analytics. They needed real-time visibility into their production processes to improve efficiency and reduce downtime.\n\nWe implemented a comprehensive IoT platform that connected all factory equipment and provided real-time analytics.",
     challenges: [
@@ -110,7 +110,7 @@ const CASE_STUDY_DETAILS = [
       "Predictive Maintenance - Unable to predict when equipment needed maintenance.",
     ],
     architectureImage:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777544551/fruits_4_va0qkf.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777544551/fruits_4_va0qkf.webp",
     solutionIntro:
       "We designed and implemented a comprehensive IoT solution that addressed all the identified challenges.",
     solutionPoints: [
@@ -355,7 +355,7 @@ export default function CaseStudyDetail() {
                     </ul>
                     <div className="mt-12 w-full">
                       <img
-                        src="https://res.cloudinary.com/dku9in8sb/image/upload/v1777889344/BTP_ot2z6b.png"
+                        src="https://res.cloudinary.com/dku9in8sb/image/upload/v1777889344/BTP_ot2z6b.webp"
                         alt="BTP Architecture"
                         className="w-full object-contain rounded-sm"
                       />
@@ -624,7 +624,7 @@ export default function CaseStudyDetail() {
                     </ul>
                     <div className="mt-12 w-full">
                       <img
-                        src="https://res.cloudinary.com/dku9in8sb/image/upload/v1777889344/BTP_ot2z6b.png"
+                        src="https://res.cloudinary.com/dku9in8sb/image/upload/v1777889344/BTP_ot2z6b.webp"
                         alt="BTP Architecture"
                         className="w-full object-contain rounded-sm"
                       />

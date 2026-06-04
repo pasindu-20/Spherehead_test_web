@@ -21,8 +21,8 @@ export const projects: Project[] = [
     servicesLine: 'Web Designing | Branding | Marketing',
     bgColor: '#173460', 
     expandedContent: {
-      laptopImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684957/Leaps_Img1_ngdobq.png",
-      tabletImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684957/Leaps_Img2_iop3nm.png",
+      laptopImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684957/Leaps_Img1_ngdobq.webp",
+      tabletImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684957/Leaps_Img2_iop3nm.webp",
       services: ['Web Designing', 'Branding', 'Marketing']
     }
   },
@@ -32,8 +32,8 @@ export const projects: Project[] = [
     servicesLine: 'Web Designing | Branding | Marketing',
     bgColor: '#252525', 
     expandedContent: {
-      laptopImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684956/A_LA_MER_img1_s8duem.png",
-      tabletImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684955/A_LA_MER_img2_tb8fsw.png",
+      laptopImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684956/A_LA_MER_img1_s8duem.webp",
+      tabletImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684955/A_LA_MER_img2_tb8fsw.webp",
       services: ['Web Designing', 'Branding', 'Marketing']
     }
   },
@@ -43,8 +43,8 @@ export const projects: Project[] = [
     servicesLine: 'Web Designing | Development | Branding | Marketing',
     bgColor: '#533C15', 
     expandedContent: {
-      laptopImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776765694/HourMarkers_img1_ttfxsf.png",
-      tabletImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684954/HourMarkers_img2_waw0in.png",
+      laptopImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776765694/HourMarkers_img1_ttfxsf.webp",
+      tabletImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684954/HourMarkers_img2_waw0in.webp",
       services: ['Web Designing', 'Development', 'Branding', 'Marketing']
     }
   },
@@ -54,8 +54,8 @@ export const projects: Project[] = [
     servicesLine: 'Web Designing | Development | Logistics',
     bgColor: '#000000', 
     expandedContent: {
-      laptopImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776765694/HourMarkers_img1_ttfxsf.png",
-      tabletImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684954/HourMarkers_img2_waw0in.png",
+      laptopImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776765694/HourMarkers_img1_ttfxsf.webp",
+      tabletImage: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684954/HourMarkers_img2_waw0in.webp",
       services: ['Logistics Platform', 'Web App', 'Analytics'] 
     }
   }

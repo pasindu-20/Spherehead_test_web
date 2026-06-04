@@ -7,52 +7,52 @@ export const services = [
     {
         number: "01",
         lines: ["UI/UX Design & Creative", "Graphics Services"],
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069882/Services_1_tyi53h.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069882/Services_1_tyi53h.webp",
     },
     {
         number: "02",
         lines: ["IoT Solutions &", "Robotics Systems"],
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069882/Services_2_zrjuz0.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069882/Services_2_zrjuz0.webp",
     },
     {
         number: "03",
         lines: ["Business Process", "Outsourcing (BPO) Services"],
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069881/Services_3_p78emb.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069881/Services_3_p78emb.webp",
     },
     {
         number: "04",
         lines: ["IT Consultation & Managed", "Support Service"],
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069883/Services_4_qeiwoz.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069883/Services_4_qeiwoz.webp",
     },
     {
         number: "05",
         lines: ["Custom Software & Mobile", "App Development"],
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069881/Services_5_hx29zn.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069881/Services_5_hx29zn.webp",
     },
     {
         number: "06",
         lines: ["Digital Commerce", "Development & SEO"],
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069885/Services_6_iqyhko.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069885/Services_6_iqyhko.webp",
     },
     {
         number: "07",
         lines: ["IoT Solutions &", "Robotics Systems"],
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069885/Services_7_vmhlpq.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069885/Services_7_vmhlpq.webp",
     },
     {
         number: "08",
         lines: ["Custom Software & Mobile", "App Development"],
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069882/Services_8_wngzvj.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069882/Services_8_wngzvj.webp",
     },
     {
         number: "09",
         lines: ["IoT Solutions &", "Robotics Systems"],
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069883/Services_9_u3kr7g.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069883/Services_9_u3kr7g.webp",
     },
     {
         number: "10",
         lines: ["UI/UX Design & Creative", "Graphics Services"],
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069881/Services_10_ulu8wg.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778069881/Services_10_ulu8wg.webp",
     },
 ];
 

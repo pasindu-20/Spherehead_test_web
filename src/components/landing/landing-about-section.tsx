@@ -69,21 +69,21 @@ export default function LandingAboutSection({
           </p>
           <div className="mb-8 flex items-center justify-center -space-x-3">
             <Image
-              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_1_sxgz4t.png"
+              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_1_sxgz4t.webp"
               width={48}
               height={48}
               className="relative z-10 h-12 w-12 rounded-full border-[3px] border-white object-cover"
               alt="Team member 1"
             />
             <Image
-              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_2_bmvgxy.png"
+              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_2_bmvgxy.webp"
               width={48}
               height={48}
               className="relative z-20 h-12 w-12 rounded-full border-[3px] border-white object-cover"
               alt="Team member 2"
             />
             <Image
-              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_3_uhxoaz.png"
+              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_3_uhxoaz.webp"
               width={48}
               height={48}
               className="relative z-10 h-12 w-12 rounded-full border-[3px] border-white object-cover"
@@ -230,7 +230,7 @@ export default function LandingAboutSection({
           <div className="mt-6 -ml-3 flex items-center gap-6">
             <div className="flex items-center -space-x-3 scale-[0.85]">
               <Image
-                src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_1_sxgz4t.png"
+                src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_1_sxgz4t.webp"
                 alt="Team member 1"
                 width={56}
                 height={56}
@@ -238,7 +238,7 @@ export default function LandingAboutSection({
               />
 
               <Image
-                src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_2_bmvgxy.png"
+                src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_2_bmvgxy.webp"
                 alt="Team member 2"
                 width={56}
                 height={56}
@@ -246,7 +246,7 @@ export default function LandingAboutSection({
               />
 
               <Image
-                src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_3_uhxoaz.png"
+                src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778214138/about_3_uhxoaz.webp"
                 alt="Team member 3"
                 width={56}
                 height={56}

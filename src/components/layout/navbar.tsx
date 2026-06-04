@@ -371,7 +371,7 @@ export default function Navbar({ scrollContainer }: NavbarProps) {
 
           <div className="relative h-full w-full overflow-hidden rounded-bl-sm">
             <Image
-              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778655466/navbar_services_ztrzax.png"
+              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778655466/navbar_services_ztrzax.webp"
               alt="Spherehead digital services workshop"
               fill
               className="object-cover"

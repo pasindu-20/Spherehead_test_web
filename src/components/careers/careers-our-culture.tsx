@@ -11,25 +11,25 @@ const cards = [
     title: "Growth Opportunities",
     desc: "We support your career development with mentoring, training, and chances to upskill in the latest technologies.",
     image:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1776932558/growth_ul8taw.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1776932558/growth_ul8taw.webp",
   },
   {
     title: "Innovative Projects",
     desc: "Be part of exciting projects that use modern tools and ideas to create real impact in industries and communities.",
     image:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1776932558/projects_eyuhrf.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1776932558/projects_eyuhrf.webp",
   },
   {
     title: "Collaborative Culture",
     desc: "Work in a friendly, supportive environment where teamwork and creativity are encouraged every day.",
     image:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1776932558/culture_hdgwsl.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1776932558/culture_hdgwsl.webp",
   },
   {
     title: "Work-Life Balance",
     desc: "Enjoy flexible work options and a culture that values well-being and a good professional balance.",
     image:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1776932558/worklife_m4yida.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1776932558/worklife_m4yida.webp",
   },
 ];
 
