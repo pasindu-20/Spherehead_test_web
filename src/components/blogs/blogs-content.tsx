@@ -64,7 +64,7 @@ export default function BlogsContent({
     : filteredPosts;
 
   return (
-    <div id={sectionId} className={`scroll-mt-20 bg-white ${className}`}>
+    <div id={sectionId} className={`scroll-mt-20 bg-white rounded-md sm:rounded-md ${className}`}>
       <SiteContainer className="py-12 lg:pt-24 lg:pb-28">
         <section>
           <div className="flex items-center gap-3">
