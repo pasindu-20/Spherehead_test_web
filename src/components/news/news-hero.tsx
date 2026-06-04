@@ -52,7 +52,7 @@ export default function NewsHero({
 
                 <motion.aside
                     style={{ x: asideX }}
-                    className="hidden lg:flex bg-white px-6 py-8 text-[#01030B] lg:min-h-[calc(100vh-104px)] lg:self-end"
+                    className="hidden lg:flex bg-white px-6 py-8 rounded-md text-[#01030B] lg:min-h-[calc(100vh-104px)] lg:self-end"
                 >
                     <div className="flex w-full flex-col">
                         <div className="mb-6 flex items-center gap-3">

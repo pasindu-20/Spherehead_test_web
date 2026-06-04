@@ -9,27 +9,27 @@ const industryCards = [
     {
         title: "Real Estate",
         description: "Smart solutions for efficient, data-driven growth.",
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778140210/industries_1_ed7muh.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778140210/industries_1_ed7muh.webp",
     },
     {
         title: "Healthcare",
         description: "Smart solutions for efficient, data-driven growth.",
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778140210/industries_2_zgqxp9.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778140210/industries_2_zgqxp9.webp",
     },
     {
         title: "Agriculture",
         description: "Smart solutions for efficient, data-driven growth.",
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778140210/industries_3_oopepz.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778140210/industries_3_oopepz.webp",
     },
     {
         title: "Education",
         description: "Smart solutions for efficient, data-driven growth.",
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778140210/industries_4_yxfffp.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778140210/industries_4_yxfffp.webp",
     },
     {
         title: "Retail",
         description: "Smart solutions for efficient, data-driven growth.",
-        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778140210/industries_6_isaufd.png",
+        image: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778140210/industries_6_isaufd.webp",
     },
 ];
 

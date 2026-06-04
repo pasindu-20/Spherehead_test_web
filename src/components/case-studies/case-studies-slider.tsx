@@ -16,7 +16,7 @@ const CASE_STUDIES = [
       "Our client, a growing retail business, needed a comprehensive e-commerce platform to expand their online presence and increase sales. The existing system was outdated, slow, and couldn't handle the growing customer base.",
     slug: "transforming-ecommerce",
     image:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777463708/agri_1_jdpgi6.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777463708/agri_1_jdpgi6.webp",
   },
   {
     id: "02",
@@ -26,7 +26,7 @@ const CASE_STUDIES = [
       "A leading healthcare provider approached us to modernize their patient management system. They needed a comprehensive solution to streamline operations, improve patient care, and ensure compliance with healthcare regulations.",
     slug: "revolutionizing-healthcare",
     image:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777462586/medi_2_cnmr4x.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777462586/medi_2_cnmr4x.webp",
   },
   {
     id: "03",
@@ -36,7 +36,7 @@ const CASE_STUDIES = [
       "A leading manufacturing company approached us to implement IoT solutions across their production facilities. They needed to modernize their manufacturing processes, improve efficiency, and reduce operational costs through smart technology integration.",
     slug: "transforming-factory-operations",
     image:
-      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777462587/fac_operations_3_k9enyp.png",
+      "https://res.cloudinary.com/dku9in8sb/image/upload/v1777462587/fac_operations_3_k9enyp.webp",
   },
 ];
 

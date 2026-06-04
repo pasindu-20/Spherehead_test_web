@@ -11,14 +11,14 @@ export default function AboutHero() {
   const { scrollContainerRef } = useScrollContainerContext();
   
   return (
-    <section className="relative overflow-hidden md:min-h-[88svh]">
-      <SiteContainer>
-        <div className="relative w-full h-full">
+    <section className="relative min-h-[88svh] overflow-hidden flex flex-col">
+      <SiteContainer className="flex flex-col flex-grow">
+        <div className="relative w-full h-full flex flex-col flex-grow">
           {/* CENTER DIVIDER LINE */}
           <div className="about-hero-divider absolute left-0 right-0 z-10 h-px -translate-y-1/2 bg-white md:bg-white" />
 
           {/* CONTENT WRAPPER */}
-          <div className="relative z-20 flex items-start pt-[calc(43svh+clamp(24px,7vw,32px))] pb-12 md:min-h-[100svh] md:items-end md:pt-28 lg:pb-20">
+          <div className="relative z-20 flex flex-col mt-auto pb-12 md:min-h-[100svh] md:flex-row md:items-end md:pt-28 lg:pb-20">
             <div className="flex w-full flex-col items-start justify-between gap-3 md:gap-8 lg:flex-row lg:items-end">
               {/* LEFT CONTENT */}
               <div className="max-w-[980px]">

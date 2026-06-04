@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import { div } from "framer-motion/m";
 
 const LOGOS = [
-  { name: "Hour Markers", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776751738/HourMarkers_sbveeh.png" },
-  { name: "A La Mer", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684952/A_LA_MER_tctzby.png" },
-  { name: "Echo Media", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684952/echo_media_d6lzam.png" },
-  { name: "ShiftX", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684952/ShiftX_zdwxyg.png" },
-  { name: "Aegis Pinnacle", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684959/Aegis_Pinnacle_kmobmi.png" },
-  { name: "Winlo", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684959/Winlo_bjjbuv.png" },
-  { name: "Enrich Dairies", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684958/Enrich_Diaries_j60qdn.png" },
-  { name: "Ninja Xpress", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778841487/Ninja_Xpress_xchn9k.png" },
+  { name: "Hour Markers", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776751738/HourMarkers_sbveeh.webp" },
+  { name: "A La Mer", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684952/A_LA_MER_tctzby.webp" },
+  { name: "Echo Media", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684952/echo_media_d6lzam.webp" },
+  { name: "ShiftX", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684952/ShiftX_zdwxyg.webp" },
+  { name: "Aegis Pinnacle", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684959/Aegis_Pinnacle_kmobmi.webp" },
+  { name: "Winlo", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684959/Winlo_bjjbuv.webp" },
+  { name: "Enrich Dairies", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1776684958/Enrich_Diaries_j60qdn.webp" },
+  { name: "Ninja Xpress", url: "https://res.cloudinary.com/dku9in8sb/image/upload/v1778841487/Ninja_Xpress_xchn9k.webp" },
 ];
 
 // Doubling the base array so each block is massively wide (fixes the gap on large screens)

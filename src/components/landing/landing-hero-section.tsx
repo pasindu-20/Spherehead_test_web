@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, MotionValue } from "motion/react";
 import SiteContainer from "@/components/layout/site-container";
 import CyclicButton from "@/components/ui/cyclic-button";
@@ -16,6 +16,12 @@ export default function LandingHeroSection({
   subtextOpacity,
   isMobile,
 }: Props) {
+  const router = useRouter();
+
+  const handleConsultationClick = () => {
+    router.push("/pricing#contact-pricing");
+  };
+
   if (isMobile) {
     return (
       <div className="flex min-h-[88svh] flex-col bg-transparent px-6 pb-10 pt-28 ">
@@ -27,11 +33,12 @@ export default function LandingHeroSection({
         </div>
         <div className="mt-8 flex items-start justify-start">
           <CyclicButton className="-ml-1 scale-95 origin-left">
-            <Link href="/pricing#contact-pricing">
-              <span className="body-large text-white">
-                Get a Free Consultation
-              </span>
-            </Link>
+            <span 
+              onClick={handleConsultationClick}
+              className="body-large text-white cursor-pointer"
+            >
+              Get a Free Consultation
+            </span>
           </CyclicButton>
         </div>
       </div>
@@ -75,11 +82,12 @@ export default function LandingHeroSection({
               className="flex items-center gap-4 text-white/90 hover:text-white transition mb-12 mt-12 lg:mt-28"
             >
               <CyclicButton>
-                <Link href="/pricing#contact-pricing">
-                  <span className="body-large text-white inline-block whitespace-nowrap">
-                    Get a Free Consultation
-                  </span>
-                </Link>
+                <span 
+                  onClick={handleConsultationClick}
+                  className="body-large text-white inline-block whitespace-nowrap cursor-pointer"
+                >
+                  Get a Free Consultation
+                </span>
               </CyclicButton>
             </motion.div>
           </div>

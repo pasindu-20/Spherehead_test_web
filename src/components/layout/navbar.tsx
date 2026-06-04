@@ -203,7 +203,7 @@ export default function Navbar({ scrollContainer }: NavbarProps) {
           <Image
             src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778040542/Layer_1_lp72bj.webp"
             alt="Spherehead Logo"
-            width={140}
+            width={170}
             height={40}
             priority
             className="h-auto"
@@ -371,7 +371,7 @@ export default function Navbar({ scrollContainer }: NavbarProps) {
 
           <div className="relative h-full w-full overflow-hidden rounded-bl-sm">
             <Image
-              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778655466/navbar_services_ztrzax.png"
+              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1778655466/navbar_services_ztrzax.webp"
               alt="Spherehead digital services workshop"
               fill
               className="object-cover"
@@ -559,7 +559,7 @@ export default function Navbar({ scrollContainer }: NavbarProps) {
             <Image
               src="https://res.cloudinary.com/dku9in8sb/image/upload/v1779707135/Layer_1_black_qbeiy4.webp"
               alt="Spherehead Logo"
-              width={140}
+              width={170}
               height={40}
               className="h-auto"
             />

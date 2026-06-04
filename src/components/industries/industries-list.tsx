@@ -46,7 +46,7 @@ export default function IndustriesList() {
     <>
       {/* MOBILE VIEW */}
       <div className="lg:hidden">
-        <section className="bg-white relative z-10 pb-16">
+        <section className="bg-white relative z-10 pt-6 pb-16">
           <SiteContainer>
             {/* Header */}
             <div className="mb-8">
@@ -74,7 +74,7 @@ export default function IndustriesList() {
                   className="w-[48vw] flex-shrink-0 flex flex-col"
                 >
                   {/* Number */}
-                  <span className="text-[20px] font-medium mb-2 bg-gradient-to-r from-[#0A2F76] to-[#2666D2] bg-clip-text text-transparent inline-block">
+                  <span className="text-[20px] font-medium mb-2 text-[#0A2F76] inline-block">
                     {item.id}
                   </span>
 
@@ -109,7 +109,7 @@ export default function IndustriesList() {
         <section className="bg-animated-gradient relative z-10">
           <div className="flex min-h-screen">
             {/* LEFT PANEL */}
-            <div className="sticky top-0 flex h-screen w-1/2 items-start px-14 pt-14">
+            <div className="sticky top-0 flex h-screen w-1/2 items-start px-14 pt-[10vh]">
               <div>
                 {/* LABEL */}
                 <div className="mb-8 flex items-center gap-3">

@@ -7,7 +7,7 @@ export default function TechnologiesSection() {
   return (
     <section className="w-full flex flex-col items-center justify-start pt-6 pb-8 lg:pt-24 text-center overflow-hidden lg:bg-white lg:rounded-t-[12px]">
       <div className="w-full px-6 lg:px-10 max-w-5xl mx-auto mb-4 lg:mb-10">
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-2 mb-4">
           <RotatingDots variant="light" />
           <span className="body-small !text-[#01030B]">
             Technologies

@@ -98,11 +98,11 @@ function BlogsDesktop() {
                     </motion.div>
                 </section>
 
-                <section className="relative z-20 -mt-[50vh] rounded-t-[40px] bg-white shadow-[0_-40px_100px_rgba(0,0,0,0.25)] sm:rounded-t-[60px]">
+                <section className="relative z-20 -mt-[50vh] rounded-md sm:rounded-md bg-transparent">
                     <BlogsContent />
                 </section>
 
-                <section className="relative z-20 bg-animated-gradient">
+                <section className="relative z-20">
                     <Footer />
                 </section>
             </main>

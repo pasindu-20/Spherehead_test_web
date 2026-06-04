@@ -60,7 +60,7 @@ export default function InternshipPrograms() {
             className="w-full lg:w-[40%] relative overflow-hidden rounded-lg bg-gray-100 min-h-[280px] lg:min-h-[400px]"
           >
             <Image
-              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1776932601/careers_gfefwe.png"
+              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1776932601/careers_gfefwe.webp"
               alt="Interns working together"
               fill
               className="object-cover object-center"

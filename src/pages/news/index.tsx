@@ -31,16 +31,16 @@ function NewsMobile() {
                 />
             </Head>
 
-            <main className="w-full overflow-x-hidden text-[#01030B] bg-white">
-                <section className="relative bg-animated-gradient">
+            <main className="w-full overflow-x-hidden text-[#01030B]">
+                <section className="relative">
                     <NewsHero progress={dummyProgress} />
                 </section>
 
-                <section className="relative z-20 bg-white">
+                <section className="relative z-20">
                     <NewsContent />
                 </section>
 
-                <section className="relative z-20 bg-animated-gradient">
+                <section className="relative z-20">
                     <Footer />
                 </section>
             </main>
@@ -98,7 +98,7 @@ function NewsDesktop() {
                     </motion.div>
                 </section>
 
-                <section className="relative z-20 -mt-[50vh] rounded-t-[40px] bg-white shadow-[0_-40px_100px_rgba(0,0,0,0.25)] sm:rounded-t-[60px]">
+                <section className="relative z-20 -mt-[50vh] rounded-md sm:rounded-md bg-transparent">
                     <NewsContent />
                 </section>
 

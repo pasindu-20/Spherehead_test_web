@@ -34,7 +34,7 @@ export default function StayConnected() {
           {/* Left Graphic: Socket — cable enters from top-left, plug head sits at vertical center */}
           <div className="absolute left-0 top-0 h-[50%] w-[85px] md:w-[180px] lg:w-[260px]">
             <img
-              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1777269546/connect_Icon2_nxbt0n.png"
+              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1777269546/connect_Icon2_nxbt0n.webp"
               alt="Socket graphic"
               className="w-full h-full object-contain object-left-bottom"
             />
@@ -43,7 +43,7 @@ export default function StayConnected() {
           {/* Right Graphic: Plug — plug head sits at vertical center, cable exits bottom-right */}
           <div className="absolute right-0 bottom-0 h-[65%] w-[80px] md:w-[180px] lg:w-[260px]">
             <img
-              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1777269546/connect_Icon1_nyua2x.png"
+              src="https://res.cloudinary.com/dku9in8sb/image/upload/v1777269546/connect_Icon1_nyua2x.webp"
               alt="Plug graphic"
               className="w-full h-full object-contain object-right-top"
             />
