@@ -107,7 +107,7 @@ select {
 
 @media (max-width: 767px) {
   .heading-1 {
-    line-height: 1;
+    line-height: 1.2;
     letter-spacing: 0;
   }
 }
@@ -308,7 +308,7 @@ select {
 
 @media (max-width: 767px) {
   .about-stat-number {
-    font-size: 48px;
+    font-size: 60px;
   }
 }
 

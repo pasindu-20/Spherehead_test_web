@@ -12,11 +12,15 @@ export default function PortfolioPage() {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    setScrollContainerRef(scrollContainerRef);
+    if (!isMobile) {
+      setScrollContainerRef(scrollContainerRef);
+    } else {
+      setScrollContainerRef(null);
+    }
     return () => {
       setScrollContainerRef(null);
     };
-  }, [scrollContainerRef, setScrollContainerRef]);
+  }, [scrollContainerRef, setScrollContainerRef, isMobile]);
 
   return (
     <div

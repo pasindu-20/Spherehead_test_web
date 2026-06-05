@@ -16,11 +16,15 @@ export default function CaseStudies() {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    setScrollContainerRef(scrollRef);
+    if (!isMobile) {
+      setScrollContainerRef(scrollRef);
+    } else {
+      setScrollContainerRef(null);
+    }
     return () => {
       setScrollContainerRef(null);
     };
-  }, [scrollRef, setScrollContainerRef]);
+  }, [scrollRef, setScrollContainerRef, isMobile]);
 
   const [isSmooth, setIsSmooth] = useState(false);
 

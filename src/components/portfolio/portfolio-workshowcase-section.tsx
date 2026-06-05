@@ -444,7 +444,7 @@ export default function WorkShowcaseSection({
               transformOrigin: "bottom left",
               transition: { duration: EXIT_DURATION, ease: [0.32, 0.72, 0, 1] },
             }}
-            className="fixed inset-0 z-20 bg-white rounded-[24px] shadow-[0_-8px_40px_rgba(0,0,0,0.12)]"
+            className="fixed inset-0 z-20 bg-white rounded-md shadow-[0_-8px_40px_rgba(0,0,0,0.12)]"
             style={{ willChange: "transform" }}
           >
             <div
@@ -549,7 +549,7 @@ export default function WorkShowcaseSection({
                                     height: { duration: 0.4, ease: "easeInOut" },
                                   },
                                 }}
-                                className="overflow-hidden rounded-b-[24px]"
+                                className="overflow-hidden rounded-b-[10px]"
                                 style={{ backgroundColor: project.bgColor }}
                               >
                                 <ProjectDetailView

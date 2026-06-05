@@ -84,7 +84,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
   // ── PURE STATIC MOBILE LAYOUT ──
   if (isMobile) {
     return (
-      <div style={{ backgroundColor: project.bgColor }} className="w-full rounded-b-[8px]">
+      <div style={{ backgroundColor: project.bgColor }} className="w-full rounded-b-md">
         <SiteContainer className="h-full flex flex-col py-4 pb-6">
           <div className="flex items-center justify-between gap-6 pb-4 border-b border-white flex-shrink-0">
             <h2 className="body-large text-white">
