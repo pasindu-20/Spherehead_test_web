@@ -12,6 +12,9 @@ export default function CaseStudiesHero() {
       <SiteContainer className="relative z-10 flex flex-col">
 
 
+        {/* DIVIDER LINE - above the title */}
+        <div className="mb-6 h-px w-full origin-left bg-white/80 md:mb-8 lg:hidden" />
+
         {/* Changed items-start back to items-end to keep grid content anchored to bottom */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
           <motion.div

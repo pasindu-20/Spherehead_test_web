@@ -15,7 +15,7 @@ export default function ContactHero() {
       <section className="lg:hidden w-full min-h-[88svh] flex flex-col overflow-hidden">
         <SiteContainer className="flex flex-col flex-grow justify-end pb-12 pt-24">
           <div className="flex flex-col mt-auto">
-            <div className="w-full h-[1px] bg-white/20 mb-8" />
+            <div className="w-full h-[1px] bg-white/80 mb-8" />
             <h1 className="inner-hero">Contact Us</h1>
             <div className="mt-6">
               <CyclicButton

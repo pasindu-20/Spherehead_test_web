@@ -12,9 +12,9 @@ export default function PricingHero() {
   return (
     <section className="relative min-h-[88svh] md:min-h-screen overflow-hidden text-white">
       <SiteContainer className="flex min-h-[88svh] md:min-h-screen flex-col justify-end pt-28 pb-16 lg:pt-36 lg:pb-20">
-        <div className="mb-14 h-px w-full origin-left bg-white/55 lg:mb-20" />
+        <div className="mb-14 h-px w-full origin-left bg-white/80 lg:mb-20" />
 
-        <div className="flex w-full flex-col items-start justify-between gap-3 md:gap-8 lg:flex-row lg:items-end">
+        <div className="flex w-full flex-col items-start justify-between gap-3 lg:gap-8 lg:flex-row lg:items-end">
           {/* LEFT CONTENT */}
           <div className="max-w-[980px]">
             <h1 className="inner-hero">
@@ -23,8 +23,8 @@ export default function PricingHero() {
               Every Digital Solution
             </h1>
 
-            <div className="mt-4 flex max-w-[760px] flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10 md:mt-[clamp(24px,4vw,32px)]">
-              <p className="heading-4 hidden max-w-[720px] md:block">
+            <div className="mt-4 flex max-w-[760px] flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10 lg:mt-[clamp(24px,4vw,32px)]">
+              <p className="heading-4 hidden max-w-[720px] lg:block">
                 Our transparent pricing and tailored service plans ensure
                 businesses get maximum value, combining quality, innovation, and
                 measurable results.

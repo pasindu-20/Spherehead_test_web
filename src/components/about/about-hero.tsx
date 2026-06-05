@@ -12,16 +12,17 @@ export default function AboutHero() {
     <section className="relative min-h-[88svh] overflow-hidden flex flex-col">
       <SiteContainer className="flex flex-col flex-grow">
         <div className="relative w-full h-full flex flex-col flex-grow">
-          {/* CENTER DIVIDER LINE */}
-          <div className="about-hero-divider absolute left-0 right-0 z-10 h-px -translate-y-1/2 bg-white md:bg-white" />
-
           {/* CONTENT WRAPPER */}
-          <div className="relative z-20 flex flex-col mt-auto pb-12 md:min-h-[100svh] md:flex-row md:items-end md:pt-28 lg:pb-20">
+          <div className="relative z-20 flex flex-col mt-auto pb-12 lg:min-h-[100svh] lg:justify-end lg:pt-28 lg:pb-20">
+            {/* DIVIDER LINE - always above the title */}
+            <div className="mb-6 h-px w-full origin-left bg-white/80 md:mb-8" />
+
             <div className="flex w-full flex-col items-start justify-between gap-3 md:gap-8 lg:flex-row lg:items-end">
               {/* LEFT CONTENT */}
               <div className="max-w-[980px]">
+
                 {/* TITLE */}
-                <h1 className="inner-hero md:hidden">
+                <h1 className="inner-hero lg:hidden">
                   Who We Are
                   <br />
                   &amp; What We
@@ -29,15 +30,15 @@ export default function AboutHero() {
                   Stand For
                 </h1>
 
-                <h1 className="inner-hero hidden md:block">
+                <h1 className="inner-hero hidden lg:block">
                   Who We Are & <br />
                   What We Stand For
                 </h1>
 
                 {/* DESCRIPTION + AVATAR */}
-                <div className="mt-4 flex max-w-[760px] flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10 md:mt-[clamp(16px,3vw,26px)]">
+                <div className="mt-4 flex max-w-[760px] flex-col items-start gap-6 sm:flex-row sm:items-end sm:gap-10 lg:mt-[clamp(16px,3vw,26px)]">
                   {/* DESCRIPTION */}
-                  <h4 className="heading-4 hidden max-w-[720px] text-white md:block">
+                  <h4 className="heading-4 hidden max-w-[720px] text-white lg:block">
                     We are a team driven by innovation, delivering
                     <br className="hidden sm:block" />
                     meaningful digital solutions that create real impact.

@@ -149,15 +149,7 @@ select {
   text-align: left;
 }
 
-.about-hero-divider {
-  top: 43svh;
-}
 
-@media (min-width: 768px) {
-  .about-hero-divider {
-    top: 50%;
-  }
-}
 
 /* line height 1.5 for desktop , 1.25 for mobile*/
 .body-large {

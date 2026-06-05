@@ -13,7 +13,7 @@ export default function ServicesHeroSection({ data }: { data: ServiceCategoryDat
       <section className="relative w-full min-h-[88svh] flex flex-col overflow-hidden bg-animated-gradient">
         <SiteContainer className="relative z-10 flex flex-col h-full flex-grow justify-end pb-12 pt-24">
           <div className="w-full flex flex-col mt-auto">
-            <div className="w-full h-[1px] bg-white/20 mb-8 origin-left" />
+            <div className="w-full h-[1px] bg-white/80 mb-8 origin-left" />
             <h1 className="inner-hero text-white">
               {data.title}
             </h1>
@@ -41,7 +41,7 @@ export default function ServicesHeroSection({ data }: { data: ServiceCategoryDat
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="w-full h-[1px] bg-white/20 mb-8 lg:mb-16 origin-left"
+            className="w-full h-[1px] bg-white/80 mb-8 lg:mb-16 origin-left"
           />
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,820px)_1fr] lg:items-end">

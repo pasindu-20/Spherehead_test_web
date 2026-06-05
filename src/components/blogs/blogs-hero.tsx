@@ -26,7 +26,7 @@ export default function BlogsHero({
             <section className="relative min-h-[88svh] flex flex-col overflow-hidden text-white">
                 <SiteContainer className="relative z-10 flex flex-col h-full flex-grow justify-end pb-10 pt-20">
                     <div className="w-full flex flex-col mt-auto">
-                        <div className="w-full h-[1px] bg-white/20 mb-6" />
+                        <div className="w-full h-[1px] bg-white/80 mb-6" />
                         <h1 className="inner-hero">Knowledge Hub</h1>
                     </div>
                 </SiteContainer>

@@ -38,7 +38,7 @@ export default function PortfolioHeroSection() {
             initial={isMobile ? false : { opacity: 0, scaleX: 0 }}
             animate={isMobile ? false : { opacity: 1, scaleX: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="w-full h-[1px] bg-white mb-6 lg:mb-12 origin-left"
+            className="w-full h-[1px] bg-white/80 mb-6 lg:mb-12 origin-left"
           />
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-8 w-full">
