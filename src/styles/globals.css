@@ -306,6 +306,12 @@ select {
   max-width: 640px;
 }
 
+@media (max-width: 767px) {
+  .about-stat-number {
+    font-size: 48px;
+  }
+}
+
 .about-stat-label {
   font-family: var(--font-archivo), Arial, Helvetica, sans-serif;
   font-size: clamp(14px, 2vw, 18px);

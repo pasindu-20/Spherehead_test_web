@@ -6,7 +6,7 @@ import SiteContainer from "../layout/site-container";
 
 export default function AboutIntro() {
   return (
-    <section className="bg-white pt-20 lg:pt-24 pb-8 lg:pb-10 rounded-md overflow-hidden">
+    <section className="bg-white pt-20 lg:pt-24 pb-8 lg:pb-10 rounded-t-md lg:rounded-md overflow-hidden">
       {/* INNER CONTENT */}
       <SiteContainer>
         <p className="heading-2 max-w-[1100px] !text-[#01030B]">

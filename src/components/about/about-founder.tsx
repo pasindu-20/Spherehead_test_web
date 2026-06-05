@@ -50,7 +50,7 @@ export default function FounderMessage() {
       className="flex w-full snap-start items-center overflow-visible rounded-b-xl bg-white py-14 pb-24 min-h-screen lg:overflow-hidden lg:py-0 lg:pb-32"
     >
       <SiteContainer>
-        <div className="flex w-full flex-col justify-between pt-20">
+        <div className="flex w-full flex-col justify-between pt-2 lg:pt-20">
           {/* TOP CONTENT */}
           <div className="max-w-[760px]">
             {/* LABEL */}
