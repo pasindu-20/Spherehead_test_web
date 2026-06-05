@@ -128,7 +128,7 @@ export default function IndustriesList() {
             </div>
 
             {/* RIGHT PANEL */}
-            <div className="w-1/2 bg-white">
+            <div className="w-1/2 bg-white pb-12 rounded-b-md overflow-hidden">
               {data.map((item) => (
                 <div key={item.id} className="border-b border-[#E7EAF0]">
                   {/* NUMBER */}

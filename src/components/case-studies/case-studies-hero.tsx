@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import SiteContainer from "@/components/layout/site-container";
 import CyclicButton from "@/components/ui/cyclic-button";
 
 export default function CaseStudiesHero() {
+  const router = useRouter();
   return (
     // 1. Changed justify-start to justify-end so the space is pushed to the top
     <section className="relative h-full flex flex-col justify-end overflow-hidden pt-32 pb-24 lg:pt-0 lg:pb-56 border-none">
@@ -42,7 +44,7 @@ export default function CaseStudiesHero() {
           >
             <CyclicButton
               onClick={() => {
-                window.location.href = "/pricing#contact-pricing";
+                router.push("/pricing#contact-pricing");
               }}
             >
               <span>Start a Project</span>

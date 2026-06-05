@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import SiteContainer from "@/components/layout/site-container";
 import CyclicButton from "@/components/ui/cyclic-button";
@@ -8,6 +9,7 @@ import ClientLogoCarousel from "@/components/ui/client-logo-carousel";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 
 export default function PortfolioHeroSection() {
+  const router = useRouter();
   const [isDesktop, setIsDesktop] = useState(true);
   const isMobile = useIsMobile();
 
@@ -71,7 +73,7 @@ export default function PortfolioHeroSection() {
             >
               <CyclicButton
                 onClick={() => {
-                  window.location.href = "/pricing#contact-pricing";
+                  router.push("/pricing#contact-pricing");
                 }}
               >
                 <span>Start a Project</span>
